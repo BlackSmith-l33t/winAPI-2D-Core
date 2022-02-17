@@ -205,19 +205,69 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             // DC 의 브러쉬는 기본 브러쉬(White)
 
             // 직접 펜과 브러쉬를 만들어서 DC에 적용
-            HPEN hRedPen = (HPEN)CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
-            HBRUSH hBlueBrush = CreateSolidBrush(RGB(0, 0, 255));
+            HPEN hBluePen = (HPEN)CreatePen(PS_SOLID, 1, RGB(0, 0, 255));
+            HBRUSH hGreenBrush = CreateSolidBrush(RGB(0, 255, 0));
 
             // 기본 펜과 브러쉬 ID 값을 받아 둠
-            HPEN hOldPen = (HPEN)SelectObject(hdc, hRedPen);
-                (HBRUSH)SelectObject(hdc, hBlueBrush);
-            
+            HPEN hOldPen = (HPEN)SelectObject(hdc, hBluePen);
+            HBRUSH hOldBrush = (HBRUSH)SelectObject(hdc, hGreenBrush);
+
+            Ellipse(hdc, x - 100, y - 100, x + 100, y + 100);
+            Rectangle(hdc, g_keyPos.x - 50, g_keyPos.y - 50, g_keyPos.x + 50, g_keyPos.y + 50);
+               
+            // DC의 펜과 브러쉬를 원래 것으로 되돌림
+            SelectObject(hdc, hOldPen);
+            SelectObject(hdc, hOldBrush);
+
+            // 다 쓴 펜, 브러쉬 삭제 요청
+            DeleteObject(hBluePen);
+            DeleteObject(hGreenBrush);
             
             EndPaint(hWnd, &ps);
         }
         break;
-    case WM_DESTROY:
-        PostQuitMessage(0);
+    case WM_KEYDOWN:
+        switch (wParam)
+        {
+        case VK_LEFT:
+            g_keyPos.x -= 10;
+            break;
+        case VK_RIGHT:
+            g_keyPos.x += 10;
+            break;
+        case VK_UP:
+            g_keyPos.y -= 10;
+            break;
+        case VK_DOWN:
+            g_keyPos.y += 10;
+            break;
+                      
+        }
+        InvalidateRect(hWnd, NULL, false);
+        break;
+    case WM_LBUTTONDOWN:
+        {
+            x = LOWORD(lParam);
+            y = HIWORD(lParam);
+           // InvalidateRect(hWnd, NULL, true);
+        }
+        break;
+    case WM_LBUTTONUP:
+        InvalidateRect(hWnd, NULL, true);
+        break;
+    case WM_RBUTTONDOWN:
+        break;
+    case WM_RBUTTONUP:
+        break;
+    case WM_MOUSEMOVE:
+        {
+            x = LOWORD(lParam);
+            y = HIWORD(lParam);
+            //InvalidateRect(hWnd, NULL, false);
+        }
+        break;
+    case WM_DESTROY:           // 윈도우가 종료될 때 실행됨.
+        PostQuitMessage(0);    // 메세지 큐에 WM_QUIT 입력
         break;
     default:
         return DefWindowProc(hWnd, message, wParam, lParam);
