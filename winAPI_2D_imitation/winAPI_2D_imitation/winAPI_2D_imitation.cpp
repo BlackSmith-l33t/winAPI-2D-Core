@@ -7,9 +7,10 @@
 #define MAX_LOADSTRING 100
 
 // 전역 변수:
-HINSTANCE hInst;                                // 현재 인스턴스입니다.
-WCHAR szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트입니다.
-WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름입니다.
+HINSTANCE hInst;                                    // 현재 인스턴스입니다.
+HWND      hWnd;                                     // 현재 윈도우의 핸들값.
+WCHAR     szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트입니다.
+WCHAR     szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름입니다.
 
 // 이 코드 모듈에 포함된 함수의 선언을 전달합니다:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
@@ -56,14 +57,34 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     // 기본 메시지 루프입니다:
     // 메세지 큐에서 메세지가 확인될 때까지 대기
     // 메세지 큐에 msg.message == WM_QUIT 인 경우 false를 반환
+
+    // GetMessage  : 메시지 큐에 메세지가 없다면 대기, 메시지가 들어온다면 true 반환
+    // PeekMessage : 메시지 큐에 메세지가 없다면 false 반환, 메시지가 있다면 true 반환
+
+    // 게임 루프 
+    // 이전 GetMessage의 대기 상태 유지에서 
+    // 현재 PeekMessage의 메시지가 없는 상황에서 게임 상황 처리
     MSG msg;
     
-    while (GetMessage(&msg, nullptr, 0, 0))
+    while (true)
     {
-        if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg)) // 단축키에 대한 처리
+        if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
         {
-            TranslateMessage(&msg); // 키보드 입력메세지 처리를 담당
-            DispatchMessage(&msg);  // WndProc에서 전달된 메세지를 실제 윈도우에 전달
+            if (WM_QUIT == msg.message)
+            {
+                break;
+            }
+
+            if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg)) // 단축키에 대한 처리
+            {
+                TranslateMessage(&msg); // 키보드 입력메세지 처리를 담당
+                DispatchMessage(&msg);  // WndProc에서 전달된 메세지를 실제 윈도우에 전달
+            }
+        }
+        else
+        {
+            // 게임 처리 
+
         }
     }
 
@@ -232,7 +253,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         case VK_LEFT:
             g_keyPos.x -= 10;
             break;
-        case VK_RIGHT:
+        case VK_RIGHT: 
             g_keyPos.x += 10;
             break;
         case VK_UP:

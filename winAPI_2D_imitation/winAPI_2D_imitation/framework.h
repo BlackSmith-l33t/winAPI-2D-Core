@@ -14,6 +14,10 @@
 #include <memory.h>
 #include <tchar.h>
 
+#include "CCore.h"
+#include "SingleTon.h"
+#include "Logger.h"
+
 //////////////////////
 
 #define WINSTARTX	100
@@ -23,6 +27,6 @@
 #define WINSTYLE	WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX
 
 // 전역 변수 : 인스턴스, 윈도우 핸들
-extern HINSTANCE M_hInstance;
-extern HWND m_hWnd;
+extern HINSTANCE hInst;
+extern HWND hWnd;
 
