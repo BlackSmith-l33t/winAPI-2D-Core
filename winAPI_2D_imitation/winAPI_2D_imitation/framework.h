@@ -16,7 +16,6 @@
 
 #include "SingleTon.h"
 #include "CCore.h"
-#include "Logger.h"
 
 //////////////////////
 

@@ -16,11 +16,11 @@
     <Filter Include="Engine">
       <UniqueIdentifier>{20a2999e-47e4-4349-841f-65ead5e51551}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Core">
-      <UniqueIdentifier>{0e1dac45-1142-419a-bcca-5fee16eaac18}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Util">
       <UniqueIdentifier>{22a54a9b-89ad-4787-9d42-6ad88d8c46fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Core">
+      <UniqueIdentifier>{179e2537-7f8e-4919-afda-65ecb491d307}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -36,14 +36,11 @@
     <ClInclude Include="winAPI_2D_imitation.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="CCore.h">
-      <Filter>Engine\Core</Filter>
-    </ClInclude>
     <ClInclude Include="SingleTon.h">
       <Filter>Util</Filter>
     </ClInclude>
-    <ClInclude Include="Logger.h">
-      <Filter>Util</Filter>
+    <ClInclude Include="CCore.h">
+      <Filter>Engine\Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
