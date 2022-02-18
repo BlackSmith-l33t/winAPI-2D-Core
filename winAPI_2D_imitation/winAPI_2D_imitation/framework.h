@@ -14,8 +14,8 @@
 #include <memory.h>
 #include <tchar.h>
 
-#include "CCore.h"
 #include "SingleTon.h"
+#include "CCore.h"
 #include "Logger.h"
 
 //////////////////////
