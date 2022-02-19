@@ -19,6 +19,5 @@ public:
 	
 	unsigned int GetFPS();
 	double		 GetDT();
-
 };
 

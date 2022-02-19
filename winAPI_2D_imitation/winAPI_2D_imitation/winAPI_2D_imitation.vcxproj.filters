@@ -25,6 +25,9 @@
     <Filter Include="Object">
       <UniqueIdentifier>{b1a15ec5-69e7-4a75-87d5-b05d9c732975}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Manager">
+      <UniqueIdentifier>{2ac80e1d-20a0-4a22-9771-b16bdbfb1cba}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -51,6 +54,9 @@
     <ClInclude Include="CGameObject.h">
       <Filter>Object</Filter>
     </ClInclude>
+    <ClInclude Include="CTimeManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winAPI_2D_imitation.cpp">
@@ -58,6 +64,9 @@
     </ClCompile>
     <ClCompile Include="CCore.cpp">
       <Filter>Engine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="CTimeManager.cpp">
+      <Filter>Manager</Filter>
     </ClCompile>
     <ClCompile Include="CGameObject.cpp">
       <Filter>Object</Filter>
