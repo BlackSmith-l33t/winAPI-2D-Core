@@ -15,7 +15,6 @@
 #include <tchar.h>
 
 #include "SingleTon.h"
-#include "struct.h"
 #include "CCore.h"
 
 //////////////////////
