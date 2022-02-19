@@ -17,6 +17,7 @@
 #include "SingleTon.h"
 #include "struct.h"
 #include "CCore.h"
+#include "CTimeManager.h"
 
 //////////////////////
 
