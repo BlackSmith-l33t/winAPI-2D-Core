@@ -2,7 +2,8 @@
 #include "CCore.h"
 #include "CGameObject.h"
 // CCore* CCore::_instance = NULL;
-CGameObject object;
+CGameObject vaus;
+CGameObject ball;
 
 CCore::CCore()
 {
@@ -22,20 +23,21 @@ void CCore::update()
 {
 	CTimeManager::getInst()->update();
 
-	fPoint pos = object.GetPos();
+	fPoint vausPos = vaus.GetPos();
+	fPoint ballPos = ball.GetPos();
 	// 게임 정보 갱신 진행
 	// GetAsyncKeyState : 메시지 큐에 키 입력을 받는 방식이 아닌  현재 상태의 키 입력상태를 확인
 	if (GetAsyncKeyState(VK_LEFT) & 0x8000)
 	{
-		pos.x -= 100 * CTimeManager::getInst()->GetDT();
+		vausPos.x -= 500 * CTimeManager::getInst()->GetDT();
 	}
 
 	if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
 	{
-		pos.x += 100 * CTimeManager::getInst()->GetDT();
+		vausPos.x += 500 * CTimeManager::getInst()->GetDT();
 	}
 
-	if (GetAsyncKeyState(VK_UP) & 0x8000)
+	/*if (GetAsyncKeyState(VK_UP) & 0x8000)
 	{
 		pos.y -= 100 * CTimeManager::getInst()->GetDT();
 	}
@@ -43,21 +45,31 @@ void CCore::update()
 	if (GetAsyncKeyState(VK_DOWN) & 0x8000)
 	{
 		pos.y += 100 * CTimeManager::getInst()->GetDT();
-	}
+	}*/
 
-	object.SetPos(pos);
+	vaus.SetPos(vausPos);
+	ball.SetPos(ballPos);
 }
 
 void CCore::render()
 {	
 	// 게임 정보를 토대도 memDC에 그리기 작업 진행
 	Rectangle(m_hMemDC, -1, -1, WINSIZEX + 1, WINSIZEY + 1);
+	//Ellipse(m_hMemDC, -1, -1, WINSIZEX + 1, WINSIZEY + 1);
 
 	Rectangle(m_hMemDC,
-		object.GetPos().x - object.GetScale().x / 2,
-		object.GetPos().y - object.GetScale().y / 2,
-		object.GetPos().x + object.GetScale().x / 2,
-		object.GetPos().y + object.GetScale().y / 2);
+		vaus.GetPos().x - vaus.GetScale().x / 2,
+		vaus.GetPos().y - vaus.GetScale().y / 2,
+		vaus.GetPos().x + vaus.GetScale().x / 2,
+		vaus.GetPos().y + vaus.GetScale().y / 2);
+
+	Ellipse(m_hMemDC,
+		ball.GetPos().x - ball.GetScale().x / 2,
+		ball.GetPos().y - ball.GetScale().y / 2,
+		ball.GetPos().x + ball.GetScale().x / 2,
+		ball.GetPos().y + ball.GetScale().y / 2);
+
+
 
 	// 오른쪽에 상단에 FPS 표시
 	WCHAR strFPS[6];
@@ -83,5 +95,6 @@ void CCore::init()
 	HBITMAP hOldBitmap = (HBITMAP)SelectObject(m_hMemDC, m_hBMP);
 	DeleteObject(hOldBitmap);
 
-	object = CGameObject(fPoint(100, 100), fPoint{ 100, 100 });
+	vaus = CGameObject(fPoint(600, 690), fPoint{ 150, 25 });
+	ball = CGameObject(fPoint(600, 660), fPoint{ 15, 15 });
 }

@@ -21,8 +21,8 @@
 
 //////////////////////
 
-#define WINSTARTX	100
-#define WINSTARTY	100
+#define WINSTARTX	300
+#define WINSTARTY	150
 #define WINSIZEX	1280
 #define WINSIZEY	720
 #define WINSTYLE	WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX
