@@ -21,28 +21,29 @@ CCore::~CCore()
 void CCore::update()
 {
 	CTimeManager::getInst()->update();
+	CKeyManager::getInst()->Update();
 
 	fPoint pos = object.GetPos();
 	// 게임 정보 갱신 진행
 	// GetAsyncKeyState : 메시지 큐에 키 입력을 받는 방식이 아닌  현재 상태의 키 입력상태를 확인
-	if (GetAsyncKeyState(VK_LEFT) & 0x8000)
+	if (KEY(VK_LEFT))
 	{
-		pos.x -= 100 * CTimeManager::getInst()->GetDT();
+		pos.x -= 100 * DT;
 	}
 
-	if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
+	if (KEY(VK_RIGHT))
 	{
-		pos.x += 100 * CTimeManager::getInst()->GetDT();
+		pos.x += 100 * DT;
 	}
 
-	if (GetAsyncKeyState(VK_UP) & 0x8000)
+	if (KEY(VK_UP))
 	{
-		pos.y -= 100 * CTimeManager::getInst()->GetDT();
+		pos.y -= 100 * DT;
 	}
 
-	if (GetAsyncKeyState(VK_DOWN) & 0x8000)
+	if (KEY(VK_DOWN))
 	{
-		pos.y += 100 * CTimeManager::getInst()->GetDT();
+		pos.y += 100 * DT;
 	}
 
 	object.SetPos(pos);
@@ -72,6 +73,7 @@ void CCore::init()
 {
 	// 게임 초기화 작업 진행
 	CTimeManager::getInst()->init();
+	CKeyManager::getInst()->Init();
 	
 	// 게임 윈도우의 DC 핸들값 가져오기
 	m_hDC = GetDC(hWnd);	

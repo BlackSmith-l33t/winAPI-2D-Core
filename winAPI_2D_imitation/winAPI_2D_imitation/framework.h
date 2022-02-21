@@ -18,6 +18,7 @@
 #include "struct.h"
 #include "CCore.h"
 #include "CTimeManager.h"
+#include "CKeyManager.h"
 
 //////////////////////
 
@@ -26,6 +27,13 @@
 #define WINSIZEX	1280
 #define WINSIZEY	720
 #define WINSTYLE	WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX
+
+
+#define DT					CTimeManager::getInst()->GetDT();
+#define KEY(vk_key)			CKeyManager::getInst()->GetButton(vk_key)
+#define KEYDOWN(vk_key)		CKeyManager::getInst()->GetButtonDown(vk_key)
+#define KEYUP(vk_key)		CKeyManager::getInst()->GetButtonUp(vk_key)
+
 
 // 전역 변수 : 인스턴스, 윈도우 핸들
 extern HINSTANCE hInst;
