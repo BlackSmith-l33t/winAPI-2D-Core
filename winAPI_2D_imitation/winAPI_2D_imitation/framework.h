@@ -13,14 +13,33 @@
 #include <malloc.h>
 #include <memory.h>
 #include <tchar.h>
+#include <string>
+using std::string;
+using std::wstring;
 
+//STL
+#include <vector>
+using std::vector;
+
+// Util
 #include "SingleTon.h"
 #include "struct.h"
 #include "CCore.h"
 #include "CTimeManager.h"
 #include "CKeyManager.h"
 
-//////////////////////
+// 오브젝트 그룹
+enum class GROUP_GAMEOBJ
+{
+	DEFAULT,
+	PLAYER,
+	MONSTER,
+	MISSILE,
+
+	SIZE,
+};
+
+// 디파인문
 
 #define WINSTARTX	100
 #define WINSTARTY	100

@@ -5,14 +5,14 @@ CGameObject::CGameObject()
 {
 }
 
-CGameObject::CGameObject(fPoint pos, fPoint scale)
-{
-	m_fptPos = pos;
-	m_fptScale = scale;
-}
-
 CGameObject::~CGameObject()
 {
+}
+
+void CGameObject::Render(HDC hDC)
+{
+	// Test용 (지워야 할 것)
+	// TODO : 0221 11시 CScene::Update() 작성 중 이쪽으로 넘어 왔음
 }
 
 void CGameObject::SetPos(fPoint pos)
