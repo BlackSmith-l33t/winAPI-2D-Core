@@ -84,6 +84,9 @@ void CCore::render()
 		if (ballPos.y >= rc.top + BALL_RADIUS / 2)
 		{
 			ballSpeed *= -1;
+			// TODO : 하려고 하는 것 -> window 창 벽면들에 상단에 공이 닿을 시에 되돌아오는 것을 구현하고 있는 중
+			// 추가 자료에 마침 알카노이드 게임 구현이 있어서 참고하는 중.
+	
 		}
 		
 		ballPos.y += ballSpeed;
