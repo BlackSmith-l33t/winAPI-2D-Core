@@ -1,13 +1,18 @@
 #include "framework.h"
 #include "CCore.h"
 #include "CGameObject.h"
-// CCore* CCore::_instance = NULL;
-CGameObject object;
+#include "CScene.h"
+
+CScene scene_stage1;
+CScene scene_stage2;
+bool stageChange = true;
 
 CCore::CCore()
 {
 	// 게임 화면을 그리기 위한 DC 핸들값 초기화
 	m_hDC = 0;	
+	m_hMemDC = 0;
+	m_hBMP = 0;
 }
 
 CCore::~CCore()
@@ -22,43 +27,28 @@ void CCore::update()
 {
 	CTimeManager::getInst()->update();
 	CKeyManager::getInst()->Update();
-
-	fPoint pos = object.GetPos();
+	
 	// 게임 정보 갱신 진행
 	// GetAsyncKeyState : 메시지 큐에 키 입력을 받는 방식이 아닌  현재 상태의 키 입력상태를 확인
-	if (KEY(VK_LEFT))
+	if (KEYDOWN(VK_SPACE))
 	{
-		pos.x -= 100 * DT;
+		stageChange = !stageChange;
 	}
-
-	if (KEY(VK_RIGHT))
-	{
-		pos.x += 100 * DT;
-	}
-
-	if (KEY(VK_UP))
-	{
-		pos.y -= 100 * DT;
-	}
-
-	if (KEY(VK_DOWN))
-	{
-		pos.y += 100 * DT;
-	}
-
-	object.SetPos(pos);
 }
 
 void CCore::render()
-{	
+{
 	// 게임 정보를 토대도 memDC에 그리기 작업 진행
 	Rectangle(m_hMemDC, -1, -1, WINSIZEX + 1, WINSIZEY + 1);
 
-	Rectangle(m_hMemDC,
-		object.GetPos().x - object.GetScale().x / 2,
-		object.GetPos().y - object.GetScale().y / 2,
-		object.GetPos().x + object.GetScale().x / 2,
-		object.GetPos().y + object.GetScale().y / 2);
+	if (stageChange)
+	{
+		scene_stage1.Render(m_hMemDC);
+	}
+	else
+	{
+		scene_stage2.Render(m_hMemDC);
+	}
 
 	// 오른쪽에 상단에 FPS 표시
 	WCHAR strFPS[6];
@@ -85,5 +75,14 @@ void CCore::init()
 	HBITMAP hOldBitmap = (HBITMAP)SelectObject(m_hMemDC, m_hBMP);
 	DeleteObject(hOldBitmap);
 
-	object = CGameObject(fPoint(100, 100), fPoint{ 100, 100 });
+	CGameObject* obj = new CGameObject;
+	obj->SetPos(fPoint(100, 100));
+	obj->SetScale(fPoint(200, 200));
+	scene_stage1.AddObject(obj, GROUP_GAMEOBJ::PLAYER);
+
+	CGameObject* monObj = new CGameObject;
+	monObj->SetPos(fPoint(200, 200));
+	monObj->SetScale(fPoint(100, 100));
+	scene_stage2.AddObject(monObj, GROUP_GAMEOBJ::MONSTER);
 }
+  

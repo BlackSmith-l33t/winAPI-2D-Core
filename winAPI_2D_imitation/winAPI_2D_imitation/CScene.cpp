@@ -25,27 +25,33 @@ void CScene::Update()
 	{
 		for (int j = 0; j < m_arrObj[i].size(); j++)
 		{
-			m_arrObj[i][j]-
+			m_arrObj[i][j]->Update();
 		}
 	}
 }
 
 void CScene::Render(HDC hDC)
 {
-
+	for (int i = 0; i < (int)GROUP_GAMEOBJ::SIZE; i++)
+	{
+		for (int j = 0; j < m_arrObj[i].size(); j++)
+		{
+			m_arrObj[i][j]->Render(hDC);
+		}
+	}
 }
 
 void CScene::SetName(const wstring& strName)
 {
-
+	m_strName = strName;
 }
 
 wstring CScene::GetName()
 {
-	return wstring();
+	return m_strName;
 }
 
 void CScene::AddObject(CGameObject* pObj, GROUP_GAMEOBJ type)
 {
-
+	m_arrObj[(int)type].push_back(pObj);
 }

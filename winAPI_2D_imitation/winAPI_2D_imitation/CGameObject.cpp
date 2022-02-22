@@ -12,7 +12,12 @@ CGameObject::~CGameObject()
 void CGameObject::Render(HDC hDC)
 {
 	// Test용 (지워야 할 것)
-	// TODO : 0221 11시 CScene::Update() 작성 중 이쪽으로 넘어 왔음
+	Rectangle(hDC,
+		m_fptPos.x - m_fptPos.x / 2,
+		m_fptPos.y - m_fptPos.y / 2,
+		m_fptPos.x + m_fptPos.x / 2,
+		m_fptPos.y + m_fptPos.y / 2
+	);	
 }
 
 void CGameObject::SetPos(fPoint pos)
