@@ -15,7 +15,7 @@ private:
 
 public:
 	void update();
-	void init();
+	void Init();
 	
 	unsigned int GetFPS();
 	double		 GetDT();

@@ -36,7 +36,7 @@ void CTimeManager::update()
     }
 }
 
-void CTimeManager::init()
+void CTimeManager::Init()
 {
     // 현재 카운트 갯수 확인
     QueryPerformanceCounter(&m_llCurCount);

@@ -1,21 +1,20 @@
 #include "framework.h"
 #include "CCore.h"
 #include "CGameObject.h"
+#include "CScene.h"
+#include "CBall.h"
 
-// CCore* CCore::_instance = NULL;
-#define BALL_RADIUS 15
+CScene scene_stage1;
+CBall* ball = new CBall;
 
-CGameObject vaus;  // TODO : 바우스에 색깔넣기
-CGameObject ball;  // TODO : 공에 색깔넣기
-fPoint vausPos;
-fPoint ballPos;
-
-bool IsStart = false;
+bool stageChange = true;
 
 CCore::CCore()
 {
 	// 게임 화면을 그리기 위한 DC 핸들값 초기화
 	m_hDC = 0;	
+	m_hMemDC = 0;
+	m_hBMP = 0;
 }
 
 CCore::~CCore()
@@ -24,77 +23,30 @@ CCore::~CCore()
 	ReleaseDC(hWnd, m_hDC);
 	DeleteObject(m_hMemDC);
 	DeleteObject(m_hBMP);
+
+	delete ball;
 }
 
 void CCore::update()
 {
 	CTimeManager::getInst()->update();
-	vausPos = vaus.GetPos();
-	ballPos = ball.GetPos();
-
+	CKeyManager::getInst()->Update();
+	
 	// 게임 정보 갱신 진행
 	// GetAsyncKeyState : 메시지 큐에 키 입력을 받는 방식이 아닌  현재 상태의 키 입력상태를 확인
-	if (GetAsyncKeyState(VK_LEFT) & 0x8000) // 해당 키가 누려있는지 확인하는 코드
+	if (KEY(VK_SPACE))
 	{
-		vausPos.x -= 500 * CTimeManager::getInst()->GetDT();
+		ball->IsStart = true;
 	}
-
-	if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
-	{
-		vausPos.x += 500 * CTimeManager::getInst()->GetDT();
-	}
-
-	if (GetAsyncKeyState(VK_SPACE) & 0x8000) // Space를 누르면 게임이 시작됨.
-	{
-		IsStart = true;
-	}
-
-	vaus.SetPos(vausPos);
-	ball.SetPos(ballPos);
 }
 
 void CCore::render()
-{	
+{
 	// 게임 정보를 토대도 memDC에 그리기 작업 진행
 	Rectangle(m_hMemDC, -1, -1, WINSIZEX + 1, WINSIZEY + 1);
-	float ballSpeed = 0.2;
 	//Ellipse(m_hMemDC, -1, -1, WINSIZEX + 1, WINSIZEY + 1);
 
-	Rectangle(m_hMemDC,
-		vaus.GetPos().x - vaus.GetScale().x / 2,
-		vaus.GetPos().y - vaus.GetScale().y / 2,
-		vaus.GetPos().x + vaus.GetScale().x / 2,
-		vaus.GetPos().y + vaus.GetScale().y / 2);
-
-	Ellipse(m_hMemDC,
-		ball.GetPos().x - ball.GetScale().x / 2,
-		ball.GetPos().y - ball.GetScale().y / 2,
-		ball.GetPos().x + ball.GetScale().x / 2,
-		ball.GetPos().y + ball.GetScale().y / 2);
-
-	RECT rc;
-	rc.left = 0;
-	rc.top = 0;
-	rc.right = WINSIZEX;
-	rc.bottom = WINSIZEY;
-		
-
-	if (true == IsStart)
-	{
-		if (ballPos.y >= rc.top + BALL_RADIUS / 2)
-		{
-			ballSpeed *= -1;
-			// TODO : 하려고 하는 것 -> window 창 벽면들에 상단에 공이 닿을 시에 되돌아오는 것을 구현하고 있는 중
-			// 추가 자료에 마침 알카노이드 게임 구현이 있어서 참고하는 중.
-	
-		}
-		
-		ballPos.y += ballSpeed;
-
-		ball.SetPos(ballPos);
-	}
-
-
+	scene_stage1.Render(m_hMemDC);
 
 	// 오른쪽에 상단에 FPS 표시
 	WCHAR strFPS[6];
@@ -108,7 +60,8 @@ void CCore::render()
 void CCore::init()
 {
 	// 게임 초기화 작업 진행
-	CTimeManager::getInst()->init();	
+	CTimeManager::getInst()->Init();
+	CKeyManager::getInst()->Init();
 	
 	// 게임 윈도우의 DC 핸들값 가져오기
 	m_hDC = GetDC(hWnd);	
@@ -120,6 +73,15 @@ void CCore::init()
 	HBITMAP hOldBitmap = (HBITMAP)SelectObject(m_hMemDC, m_hBMP);
 	DeleteObject(hOldBitmap);
 
-	vaus = CGameObject(fPoint(600, 690), fPoint{ 150, 25 });
-	ball = CGameObject(fPoint(600, 660), fPoint{ BALL_RADIUS, BALL_RADIUS });
+	/*CGameObject* vaus = new CGameObject;
+	vaus->SetPos(fPoint(600, 690));
+	vaus->SetScale(fPoint{ VAUSX, VAUSY });
+	scene_stage1.AddObject(vaus, GROUP_GAMEOBJ::BRICK_BREAKER);*/
+		
+	ball->SetPos(fPoint(600, 660));
+	ball->SetScale(fPoint{ BALL_RADIUS, BALL_RADIUS });
+	scene_stage1.AddObject(ball, GROUP_GAMEOBJ::BRICK_BREAKER);
+
+	// TODO : 벽돌 생성하기	
 }
+  

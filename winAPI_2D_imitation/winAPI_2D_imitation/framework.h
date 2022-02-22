@@ -13,19 +13,52 @@
 #include <malloc.h>
 #include <memory.h>
 #include <tchar.h>
+#include <string>
+using std::string;
+using std::wstring;
 
+//STL
+#include <vector>
+using std::vector;
+
+// Util
 #include "SingleTon.h"
 #include "struct.h"
 #include "CCore.h"
 #include "CTimeManager.h"
+#include "CKeyManager.h"
+#include "CBall.h"
 
-//////////////////////
+// 오브젝트 그룹
+enum class GROUP_GAMEOBJ
+{
+	DEFAULT,
+	BRICK_BREAKER, // 지금 만들고 있는 게임을 한 그룹으로 분류
+	PLAYER,
+	MONSTER,
+	MISSILE,
+
+	SIZE,
+};
+
+// 디파인문
 
 #define WINSTARTX	300
 #define WINSTARTY	150
 #define WINSIZEX	1280
 #define WINSIZEY	720
 #define WINSTYLE	WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX
+
+
+#define DT					CTimeManager::getInst()->GetDT();
+#define KEY(vk_key)			CKeyManager::getInst()->GetButton(vk_key)
+#define KEYDOWN(vk_key)		CKeyManager::getInst()->GetButtonDown(vk_key)
+#define KEYUP(vk_key)		CKeyManager::getInst()->GetButtonUp(vk_key)
+
+#define BALL_RADIUS 15
+#define VAUSX 150
+#define VAUSY 25
+
 
 // 전역 변수 : 인스턴스, 윈도우 핸들
 extern HINSTANCE hInst;

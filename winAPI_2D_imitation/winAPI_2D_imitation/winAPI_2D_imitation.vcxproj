@@ -147,8 +147,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CBall.h" />
     <ClInclude Include="CCore.h" />
     <ClInclude Include="CGameObject.h" />
+    <ClInclude Include="CKeyManager.h" />
+    <ClInclude Include="CScene.h" />
     <ClInclude Include="CTimeManager.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Resource.h" />
@@ -158,8 +161,11 @@
     <ClInclude Include="winAPI_2D_imitation.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CBall.cpp" />
     <ClCompile Include="CCore.cpp" />
     <ClCompile Include="CGameObject.cpp" />
+    <ClCompile Include="CKeyManager.cpp" />
+    <ClCompile Include="CScene.cpp" />
     <ClCompile Include="CTimeManager.cpp" />
     <ClCompile Include="winAPI_2D_imitation.cpp" />
   </ItemGroup>
