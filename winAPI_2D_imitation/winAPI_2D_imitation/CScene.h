@@ -6,8 +6,8 @@ class CGameObject;
 
 class CScene
 {
-	vector<CGameObject*> m_arrObj[(int)GROUP_GAMEOBJ::SIZE];
-	wstring m_strName;
+	vector<CGameObject*>  m_arrObj[(int)GROUP_GAMEOBJ::SIZE];
+	wstring				  m_strName; // wstring =>  2byte 한글까지 포함하기 위해서 사용한다.
 
 public:
 	CScene();
@@ -16,9 +16,15 @@ public:
 	virtual void Update();
 	virtual void Render(HDC hDC);
 
-	void SetName(const wstring& strName);
+	virtual void Enter() = 0;
+	virtual void Exit() = 0;
+
+	void	SetName(const wstring& strName);
 	wstring GetName();
 
-	void AddObject(CGameObject* pObj, GROUP_GAMEOBJ type);
+	void	AddObject(CGameObject* pObj, GROUP_GAMEOBJ type);
+
+protected:
+	void Clear();
 };
 

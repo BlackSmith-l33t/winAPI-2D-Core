@@ -17,6 +17,17 @@
 using std::string;
 using std::wstring;
 
+// 씬 그룹
+enum class GROUP_SCENE
+{
+	TOOL,
+	START,
+	STAGE_01,
+	STAGE_02,
+
+	SIZE,
+};
+
 //STL
 #include <vector>
 using std::vector;
@@ -27,6 +38,8 @@ using std::vector;
 #include "CCore.h"
 #include "CTimeManager.h"
 #include "CKeyManager.h"
+#include "CSceneManager.h"
+
 
 // 오브젝트 그룹
 enum class GROUP_GAMEOBJ

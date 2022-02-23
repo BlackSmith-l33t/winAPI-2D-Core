@@ -9,14 +9,37 @@ CGameObject::~CGameObject()
 {
 }
 
+void CGameObject::Update()
+{
+	if (KEY(VK_LEFT))
+	{
+		m_fptPos.x -= 100 * DT;
+	}
+
+	if (KEY(VK_RIGHT))
+	{
+		m_fptPos.x += 100 * DT;
+	}
+
+	if (KEY(VK_UP))
+	{
+		m_fptPos.y -= 100 * DT;
+	}
+
+	if (KEY(VK_DOWN))
+	{
+		m_fptPos.y += 100 * DT;
+	}
+}
+
 void CGameObject::Render(HDC hDC)
 {
 	// Test용 (지워야 할 것)
 	Rectangle(hDC,
-		m_fptPos.x - m_fptPos.x / 2,
-		m_fptPos.y - m_fptPos.y / 2,
-		m_fptPos.x + m_fptPos.x / 2,
-		m_fptPos.y + m_fptPos.y / 2
+		(int)m_fptPos.x - m_fptScale.x / 2,
+		(int)m_fptPos.y - m_fptScale.y / 2,
+		(int)m_fptPos.x + m_fptScale.x / 2,
+		(int)m_fptPos.y + m_fptScale.y / 2
 	);	
 }
 
