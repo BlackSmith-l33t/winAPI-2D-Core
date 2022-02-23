@@ -2,10 +2,6 @@
 #include "CCore.h"
 #include "CGameObject.h"
 #include "CScene.h"
-#include "CBall.h"
-
-CScene scene_stage1;
-CBall* ball = new CBall;
 
 bool stageChange = true;
 
@@ -22,22 +18,15 @@ CCore::~CCore()
 	// 게임 코어 종료 시점에 DC 핸들값 반납
 	ReleaseDC(hWnd, m_hDC);
 	DeleteObject(m_hMemDC);
-	DeleteObject(m_hBMP);
-
-	delete ball;
+	DeleteObject(m_hBMP);	
 }
 
 void CCore::update()
 {
 	CTimeManager::getInst()->update();
 	CKeyManager::getInst()->Update();
-	
+	CSceneManager::getInst()->Update();
 	// 게임 정보 갱신 진행
-	// GetAsyncKeyState : 메시지 큐에 키 입력을 받는 방식이 아닌  현재 상태의 키 입력상태를 확인
-	if (KEY(VK_SPACE))
-	{
-		ball->IsStart = true;
-	}
 }
 
 void CCore::render()
@@ -46,7 +35,7 @@ void CCore::render()
 	Rectangle(m_hMemDC, -1, -1, WINSIZEX + 1, WINSIZEY + 1);
 	//Ellipse(m_hMemDC, -1, -1, WINSIZEX + 1, WINSIZEY + 1);
 
-	scene_stage1.Render(m_hMemDC);
+	CSceneManager::getInst()->Render(m_hMemDC);
 
 	// 오른쪽에 상단에 FPS 표시
 	WCHAR strFPS[6];
@@ -62,6 +51,7 @@ void CCore::init()
 	// 게임 초기화 작업 진행
 	CTimeManager::getInst()->Init();
 	CKeyManager::getInst()->Init();
+	CSceneManager::getInst()->Init();
 	
 	// 게임 윈도우의 DC 핸들값 가져오기
 	m_hDC = GetDC(hWnd);	
@@ -71,17 +61,7 @@ void CCore::init()
 	m_hBMP = CreateCompatibleBitmap(m_hDC, WINSIZEX, WINSIZEY);
 
 	HBITMAP hOldBitmap = (HBITMAP)SelectObject(m_hMemDC, m_hBMP);
-	DeleteObject(hOldBitmap);
+	DeleteObject(hOldBitmap);	
 
-	/*CGameObject* vaus = new CGameObject;
-	vaus->SetPos(fPoint(600, 690));
-	vaus->SetScale(fPoint{ VAUSX, VAUSY });
-	scene_stage1.AddObject(vaus, GROUP_GAMEOBJ::BRICK_BREAKER);*/
-		
-	ball->SetPos(fPoint(600, 660));
-	ball->SetScale(fPoint{ BALL_RADIUS, BALL_RADIUS });
-	scene_stage1.AddObject(ball, GROUP_GAMEOBJ::BRICK_BREAKER);
-
-	// TODO : 벽돌 생성하기	
 }
   

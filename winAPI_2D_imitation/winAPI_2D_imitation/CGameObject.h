@@ -7,15 +7,15 @@ private:
 
 public:
 	CGameObject();
-	~CGameObject();
+	virtual ~CGameObject();
 
 	virtual void Update() = 0;
 	virtual void Render(HDC hDC) = 0;
 
-	void SetPos(fPoint pos);
-	void SetScale(fPoint scale);
-
 	fPoint GetPos();
+	void SetPos(fPoint pos);
+	
 	fPoint GetScale();
+	void SetScale(fPoint scale);	
 };
 

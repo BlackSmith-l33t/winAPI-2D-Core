@@ -21,13 +21,16 @@ using std::wstring;
 #include <vector>
 using std::vector;
 
-// Util
-#include "SingleTon.h"
-#include "struct.h"
-#include "CCore.h"
-#include "CTimeManager.h"
-#include "CKeyManager.h"
-#include "CBall.h"
+// 씬 그룹
+enum class GROUP_SCENE
+{
+	TOOL,
+	START,
+	STAGE_01,
+	STAGE_02,
+
+	SIZE,
+};
 
 // 오브젝트 그룹
 enum class GROUP_GAMEOBJ
@@ -40,6 +43,16 @@ enum class GROUP_GAMEOBJ
 
 	SIZE,
 };
+
+// Util
+#include "SingleTon.h"
+#include "struct.h"
+#include "CCore.h"
+#include "CTimeManager.h"
+#include "CKeyManager.h"
+#include "CSceneManager.h"
+
+
 
 // 디파인문
 

@@ -11,14 +11,19 @@ class CScene
 
 public:
 	CScene();
-	~CScene();
+	virtual ~CScene();
 
 	virtual void Update();
-	virtual void Render(HDC hDC);
+	virtual void Render(HDC hDC);	
+
+	virtual void Enter() = 0;
+	virtual void Exit() = 0;
 
 	void SetName(const wstring& strName);
 	wstring GetName();
 
-	void AddObject(CGameObject* pObj, GROUP_GAMEOBJ type);
+	void AddObject(CGameObject* pObj, GROUP_GAMEOBJ group);
+protected:
+	void Clear();
 };
 

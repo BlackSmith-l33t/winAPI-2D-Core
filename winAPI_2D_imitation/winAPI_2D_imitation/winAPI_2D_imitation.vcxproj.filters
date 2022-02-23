@@ -66,8 +66,17 @@
     <ClInclude Include="CScene.h">
       <Filter>Scene</Filter>
     </ClInclude>
-    <ClInclude Include="CBall.h">
+    <ClInclude Include="CScene_Start.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CGameObject_MainText.h">
       <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="CScene_Stage_01.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CSceneManager.h">
+      <Filter>Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -89,8 +98,17 @@
     <ClCompile Include="CScene.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
-    <ClCompile Include="CBall.cpp">
+    <ClCompile Include="CScene_Start.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CGameObject_MainText.cpp">
       <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CScene_Stage_01.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CSceneManager.cpp">
+      <Filter>Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
