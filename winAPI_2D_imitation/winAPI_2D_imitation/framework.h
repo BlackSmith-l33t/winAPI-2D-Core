@@ -52,8 +52,6 @@ enum class GROUP_GAMEOBJ
 #include "CKeyManager.h"
 #include "CSceneManager.h"
 
-
-
 // 디파인문
 
 #define WINSTARTX	300

@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CBall.h" />
     <ClInclude Include="CCore.h" />
     <ClInclude Include="CGameObject.h" />
     <ClInclude Include="CGameObject_MainText.h" />
@@ -156,6 +157,7 @@
     <ClInclude Include="CScene_Stage_01.h" />
     <ClInclude Include="CScene_Start.h" />
     <ClInclude Include="CTimeManager.h" />
+    <ClInclude Include="CVaus.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="SingleTon.h" />
@@ -164,6 +166,7 @@
     <ClInclude Include="winAPI_2D_imitation.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CBall.cpp" />
     <ClCompile Include="CCore.cpp" />
     <ClCompile Include="CGameObject.cpp" />
     <ClCompile Include="CGameObject_MainText.cpp" />
@@ -173,6 +176,7 @@
     <ClCompile Include="CScene_Stage_01.cpp" />
     <ClCompile Include="CScene_Start.cpp" />
     <ClCompile Include="CTimeManager.cpp" />
+    <ClCompile Include="CVaus.cpp" />
     <ClCompile Include="winAPI_2D_imitation.cpp" />
   </ItemGroup>
   <ItemGroup>
