@@ -13,18 +13,59 @@
 #include <malloc.h>
 #include <memory.h>
 #include <tchar.h>
+#include <string>
+using std::string;
+using std::wstring;
 
+// 씬 그룹
+enum class GROUP_SCENE
+{
+	TOOL,
+	START,
+	STAGE_01,
+	STAGE_02,
+
+	SIZE,
+};
+
+//STL
+#include <vector>
+using std::vector;
+
+// Util
 #include "SingleTon.h"
 #include "struct.h"
 #include "CCore.h"
+#include "CTimeManager.h"
+#include "CKeyManager.h"
+#include "CSceneManager.h"
 
-//////////////////////
+
+// 오브젝트 그룹
+enum class GROUP_GAMEOBJ
+{
+	DEFAULT,
+	PLAYER,
+	MONSTER,
+	MISSILE,
+
+	SIZE,
+};
+
+// 디파인문
 
 #define WINSTARTX	100
 #define WINSTARTY	100
 #define WINSIZEX	1280
 #define WINSIZEY	720
 #define WINSTYLE	WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX
+
+
+#define DT					CTimeManager::getInst()->GetDT();
+#define KEY(vk_key)			CKeyManager::getInst()->GetButton(vk_key)
+#define KEYDOWN(vk_key)		CKeyManager::getInst()->GetButtonDown(vk_key)
+#define KEYUP(vk_key)		CKeyManager::getInst()->GetButtonUp(vk_key)
+
 
 // 전역 변수 : 인스턴스, 윈도우 핸들
 extern HINSTANCE hInst;

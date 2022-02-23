@@ -1,14 +1,14 @@
 #include "framework.h"
-#include "CGameObject.h"
 #include "CCore.h"
+#include "CGameObject.h"
+#include "CScene.h"
 
-// CCore* CCore::_instance = NULL;
-CGameObject object;
+bool stageChange = true;
 
 CCore::CCore()
 {
 	// 게임 화면을 그리기 위한 DC 핸들값 초기화
-	m_hDC = 0;
+	m_hDC = 0;	
 	m_hMemDC = 0;
 	m_hBMP = 0;
 }
@@ -23,13 +23,24 @@ CCore::~CCore()
 
 void CCore::update()
 {
+	CTimeManager::getInst()->update();
+	CKeyManager::getInst()->Update();
+	CSceneManager::getInst()->Update();
+	
 	// 게임 정보 갱신 진행
-	// GetAsyncKeyState : 메시지 큐에 키 입력을 받는 방식이 아닌  현재 상태의 키 입력상태를 확인
 }
 
 void CCore::render()
-{	
+{
 	// 게임 정보를 토대도 memDC에 그리기 작업 진행
+	Rectangle(m_hMemDC, -1, -1, WINSIZEX + 1, WINSIZEY + 1);
+
+	CSceneManager::getInst()->Render(m_hMemDC);
+
+	// 오른쪽에 상단에 FPS 표시
+	WCHAR strFPS[6];
+	swprintf_s(strFPS, L"%5d", CTimeManager::getInst()->GetFPS());
+	TextOutW(m_hMemDC, WINSIZEX - 50, 10, strFPS, 5);
 
 	// memDC에 그린 작업을 다시 윈도우 DC로 복사
 	BitBlt(m_hDC, 0, 0, WINSIZEX, WINSIZEY, m_hMemDC, 0, 0, SRCCOPY);
@@ -38,7 +49,10 @@ void CCore::render()
 void CCore::init()
 {
 	// 게임 초기화 작업 진행
-
+	CTimeManager::getInst()->init();
+	CKeyManager::getInst()->Init();
+	CSceneManager::getInst()->Init();
+	
 	// 게임 윈도우의 DC 핸들값 가져오기
 	m_hDC = GetDC(hWnd);	
 
@@ -49,3 +63,4 @@ void CCore::init()
 	HBITMAP hOldBitmap = (HBITMAP)SelectObject(m_hMemDC, m_hBMP);
 	DeleteObject(hOldBitmap);
 }
+  
