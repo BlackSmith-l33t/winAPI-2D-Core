@@ -45,6 +45,7 @@ void CSceneManager::Update()
 	}
 	else if (KEYDOWN(VK_ESCAPE))
 	{
+		// TODO : 게임 화면에서 ESC 를 누르면 오류 발생. 원인은 아직 찾기 못했음.
 		changeScene(GROUP_SCENE::START);
 	}
 	m_pCurrScene->Update();

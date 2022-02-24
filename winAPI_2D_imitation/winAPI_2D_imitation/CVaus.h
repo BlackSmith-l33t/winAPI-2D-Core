@@ -5,7 +5,7 @@
 class CVaus :  public CGameObject
 {
 private:
-	double m_dVausSpeed = 500;
+	double m_dVausSpeed;
 
 public:
 	CVaus();

@@ -38,6 +38,7 @@ enum class GROUP_GAMEOBJ
 	DEFAULT,
 	BRICK_BREAKER, // 지금 만들고 있는 게임을 한 그룹으로 분류
 	PLAYER,
+	BALL,
 	MONSTER,
 	MISSILE,
 

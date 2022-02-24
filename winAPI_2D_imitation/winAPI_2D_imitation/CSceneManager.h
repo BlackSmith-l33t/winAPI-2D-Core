@@ -14,7 +14,5 @@ public:
 	void Update();
 	void Init();
 	void Render(HDC hDC);
-
-
 };
 
