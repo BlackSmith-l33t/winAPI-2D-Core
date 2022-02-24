@@ -40,7 +40,6 @@ using std::vector;
 #include "CKeyManager.h"
 #include "CSceneManager.h"
 
-
 // 오브젝트 그룹
 enum class GROUP_GAMEOBJ
 {

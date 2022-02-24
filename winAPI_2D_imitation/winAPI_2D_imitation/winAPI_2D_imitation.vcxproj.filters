@@ -72,6 +72,15 @@
     <ClInclude Include="CScene_Start.h">
       <Filter>Scene</Filter>
     </ClInclude>
+    <ClInclude Include="CPlayer.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="CMonster.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="CMissile.h">
+      <Filter>Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winAPI_2D_imitation.cpp">
@@ -97,6 +106,15 @@
     </ClCompile>
     <ClCompile Include="CScene_Start.cpp">
       <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayer.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CMonster.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CMissile.cpp">
+      <Filter>Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

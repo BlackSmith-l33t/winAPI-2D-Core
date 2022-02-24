@@ -15,5 +15,5 @@ public:
 	void Update();	
 	void Render(HDC hDC);
 
-	CScene* GetCurScene()
+	CScene* GetCurScene();
 };

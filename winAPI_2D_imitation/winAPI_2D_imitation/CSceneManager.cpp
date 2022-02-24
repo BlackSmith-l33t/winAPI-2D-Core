@@ -44,6 +44,11 @@ void CSceneManager::Render(HDC hDC)
 	m_pCurrScene->Render(hDC);
 }
 
+CScene* CSceneManager::GetCurScene()
+{
+	return m_pCurrScene;
+}
+
 void CSceneManager::Init()
 {
 	m_arrScene[(int)GROUP_SCENE::START] = new CScene_Start;
