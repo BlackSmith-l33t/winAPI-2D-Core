@@ -11,7 +11,7 @@ class CScene
 
 public:
 	CScene();
-	~CScene();
+	virtual ~CScene();
 
 	virtual void Update();
 	virtual void Render(HDC hDC);

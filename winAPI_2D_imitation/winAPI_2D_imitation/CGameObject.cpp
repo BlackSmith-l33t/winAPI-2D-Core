@@ -9,29 +9,6 @@ CGameObject::~CGameObject()
 {
 }
 
-void CGameObject::Update()
-{
-	if (KEY(VK_LEFT))
-	{
-		m_fptPos.x -= 100 * DT;
-	}
-
-	if (KEY(VK_RIGHT))
-	{
-		m_fptPos.x += 100 * DT;
-	}
-
-	if (KEY(VK_UP))
-	{
-		m_fptPos.y -= 100 * DT;
-	}
-
-	if (KEY(VK_DOWN))
-	{
-		m_fptPos.y += 100 * DT;
-	}
-}
-
 void CGameObject::Render(HDC hDC)
 {
 	// Test용 (지워야 할 것)
