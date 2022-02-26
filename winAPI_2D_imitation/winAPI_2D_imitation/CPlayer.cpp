@@ -1,7 +1,5 @@
 #include "framework.h"
 #include "CPlayer.h"
-#include "framework.h"
-#include "CPlayer.h"
 #include "CMissile.h"
 #include "CScene.h"
 CPlayer::CPlayer()
