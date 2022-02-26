@@ -81,6 +81,9 @@
     <ClInclude Include="CMissile.h">
       <Filter>Object</Filter>
     </ClInclude>
+    <ClInclude Include="CPathManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winAPI_2D_imitation.cpp">
@@ -115,6 +118,9 @@
     </ClCompile>
     <ClCompile Include="CMissile.cpp">
       <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CPathManager.cpp">
+      <Filter>Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -17,6 +17,10 @@
 using std::string;
 using std::wstring;
 
+//STL
+#include <vector>
+using std::vector;
+
 // 씬 그룹
 enum class GROUP_SCENE
 {
@@ -28,18 +32,6 @@ enum class GROUP_SCENE
 	SIZE,
 };
 
-//STL
-#include <vector>
-using std::vector;
-
-// Util
-#include "SingleTon.h"
-#include "struct.h"
-#include "CCore.h"
-#include "CTimeManager.h"
-#include "CKeyManager.h"
-#include "CSceneManager.h"
-
 // 오브젝트 그룹
 enum class GROUP_GAMEOBJ
 {
@@ -50,6 +42,17 @@ enum class GROUP_GAMEOBJ
 
 	SIZE,
 };
+
+
+// Util
+#include "SingleTon.h"
+#include "struct.h"
+#include "CCore.h"
+
+#include "CTimeManager.h"
+#include "CKeyManager.h"
+#include "CSceneManager.h"
+#include "CPathManager.h"
 
 // 디파인문
 

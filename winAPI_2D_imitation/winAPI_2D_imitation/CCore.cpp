@@ -49,6 +49,7 @@ void CCore::render()
 void CCore::init()
 {
 	// 게임 초기화 작업 진행
+	CPathManager::getInst()->init();
 	CTimeManager::getInst()->init();
 	CKeyManager::getInst()->Init();
 	CSceneManager::getInst()->Init();

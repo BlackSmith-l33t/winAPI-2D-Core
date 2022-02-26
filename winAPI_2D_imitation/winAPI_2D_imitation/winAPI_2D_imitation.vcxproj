@@ -78,9 +78,11 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)Output\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)Output\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -152,6 +154,7 @@
     <ClInclude Include="CKeyManager.h" />
     <ClInclude Include="CMissile.h" />
     <ClInclude Include="CMonster.h" />
+    <ClInclude Include="CPathManager.h" />
     <ClInclude Include="CPlayer.h" />
     <ClInclude Include="CScene.h" />
     <ClInclude Include="CSceneManager.h" />
@@ -170,6 +173,7 @@
     <ClCompile Include="CKeyManager.cpp" />
     <ClCompile Include="CMissile.cpp" />
     <ClCompile Include="CMonster.cpp" />
+    <ClCompile Include="CPathManager.cpp" />
     <ClCompile Include="CPlayer.cpp" />
     <ClCompile Include="CScene.cpp" />
     <ClCompile Include="CSceneManager.cpp" />
