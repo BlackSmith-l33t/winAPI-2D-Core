@@ -9,6 +9,7 @@ CGameObject::~CGameObject()
 {
 }
 
+<<<<<<< HEAD
 void CGameObject::Update()
 {
 	if (KEY(VK_LEFT))
@@ -41,6 +42,17 @@ void CGameObject::Render(HDC hDC)
 		m_fptPos.x + m_fptScale.x / 2,
 		m_fptPos.y + m_fptScale.y / 2
 		);
+=======
+void CGameObject::Render(HDC hDC)
+{
+	// Test용 (지워야 할 것)
+	Rectangle(hDC,
+		(int)m_fptPos.x - m_fptScale.x / 2,
+		(int)m_fptPos.y - m_fptScale.y / 2,
+		(int)m_fptPos.x + m_fptScale.x / 2,
+		(int)m_fptPos.y + m_fptScale.y / 2
+	);	
+>>>>>>> Core
 }
 
 void CGameObject::SetPos(fPoint pos)

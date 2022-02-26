@@ -11,5 +11,8 @@ public:
 	void update();
 	void render();
 	void init();
+
+	HDC GetMainDC(); 
+	// TODO : 해당함수를 CTexture 에서 사용하게 되는데, m_hMemDC를 반환해야하는 이유를 정확히 모르겠음.
 };
 

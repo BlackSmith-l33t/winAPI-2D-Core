@@ -3,6 +3,7 @@
 //
 
 #pragma once
+#pragma comment(lib, "Msimg32.lib")
 
 #include "targetver.h"
 #define WIN32_LEAN_AND_MEAN             // 거의 사용되지 않는 내용을 Windows 헤더에서 제외합니다.
@@ -13,14 +14,52 @@
 #include <malloc.h>
 #include <memory.h>
 #include <tchar.h>
+#include <string>
+#include <assert.h>
+using std::string;
+using std::wstring;
 
+//STL
+#include <vector>
+#include <map>
+using namespace std;
+using std::vector;
+
+// 씬 그룹
+enum class GROUP_SCENE
+{
+	TOOL,
+	START,
+	STAGE_01,
+	STAGE_02,
+
+	SIZE,
+};
+
+// 오브젝트 그룹
+enum class GROUP_GAMEOBJ
+{
+	DEFAULT,
+	PLAYER,
+	MONSTER,
+	MISSILE,
+
+	SIZE,
+};
+
+
+// Util
 #include "SingleTon.h"
 #include "struct.h"
 #include "CCore.h"
+
+#include "CResourceManager.h"
 #include "CTimeManager.h"
 #include "CKeyManager.h"
+#include "CSceneManager.h"
+#include "CPathManager.h"
 
-//////////////////////
+// 디파인문
 
 #define WINSTARTX	100
 #define WINSTARTY	100
