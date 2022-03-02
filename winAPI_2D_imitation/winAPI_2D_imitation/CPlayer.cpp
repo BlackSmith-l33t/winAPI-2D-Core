@@ -2,10 +2,14 @@
 #include "CPlayer.h"
 #include "CMissile.h"
 #include "CScene.h"
-CPlayer::CPlayer()
-{
-	SetScale(fPoint(50, 50));
+#include "CTexture.h"
+#include "CCollider.h"
 
+CPlayer::CPlayer()
+{	m_pTex = CResourceManager::getInst()->LoadTexture(L"PlayerTex", L"texture\\Player.bmp");
+	CreateCollider();
+	GetCollider()->SetScale(fPoint(40.f, 40.f));
+	GetCollider()->SetOffsetPos(fPoint(0.f, 8.f));
 }
 
 CPlayer::~CPlayer()
@@ -46,12 +50,18 @@ void CPlayer::Update()
 
 void CPlayer::Render(HDC hDC)
 {
-	Rectangle(hDC,
-		(int)(GetPos().x - GetScale().x / 2),
-		(int)(GetPos().y - GetScale().y / 2),
-		(int)(GetPos().x + GetScale().x / 2),
-		(int)(GetPos().y + GetScale().y / 2)
-	);
+	int width = m_pTex->GetBMPWidth();
+	int height = m_pTex->GetBMPHeight();
+
+	TransparentBlt(hDC,
+		GetPos().x - width / 2.f,
+		GetPos().y - height / 2.f,
+		width, height,
+		m_pTex->GetDC(),
+		0, 0, width, height,
+		RGB(255, 0, 255));
+
+	Component_Render(hDC);
 }
 
 void CPlayer::CreateMissile()
@@ -65,32 +75,5 @@ void CPlayer::CreateMissile()
 
 	CScene* pCurScene = CSceneManager::getInst()->GetCurScene();
 	pCurScene->AddObject(pMissile, GROUP_GAMEOBJ::MISSILE);
-
-	CMissile* pMissile2 = new CMissile;
-	pMissile2->SetPos(fptMissilePos);
-	pMissile2->SetDir(fVec2(0, 1));
-
-	pCurScene = CSceneManager::getInst()->GetCurScene();
-	pCurScene->AddObject(pMissile2, GROUP_GAMEOBJ::MISSILE);
-
-	CMissile* pMissile3 = new CMissile;
-	pMissile3->SetPos(fptMissilePos);
-	pMissile3->SetDir(fVec2(0, -1));
-
-	pCurScene = CSceneManager::getInst()->GetCurScene();
-	pCurScene->AddObject(pMissile3, GROUP_GAMEOBJ::MISSILE);
-
-	CMissile* pMissile4 = new CMissile;
-	pMissile4->SetPos(fptMissilePos);
-	pMissile4->SetDir(fVec2(1, -1));
-
-	pCurScene = CSceneManager::getInst()->GetCurScene();
-	pCurScene->AddObject(pMissile4, GROUP_GAMEOBJ::MISSILE);
-
-	CMissile* pMissile5 = new CMissile;
-	pMissile5->SetPos(fptMissilePos);
-	pMissile5->SetDir(fVec2(1, 1));
-
-	pCurScene = CSceneManager::getInst()->GetCurScene();
-	pCurScene->AddObject(pMissile5, GROUP_GAMEOBJ::MISSILE);
+	
 }

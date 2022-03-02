@@ -7,9 +7,7 @@
 CCollider::CCollider()
 {
 	m_pOwner = nullptr;
-	m_fptOffsetPos = {};
-	m_fptScale = {};
-	m_fptFinalPos = {};
+	
 }
 
 CCollider::~CCollider()
