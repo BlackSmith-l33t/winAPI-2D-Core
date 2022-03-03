@@ -1,13 +1,16 @@
 #include "framework.h"
 #include "CMonster.h"
+#include "CCollider.h"
 
 CMonster::CMonster()
 {
-	SetScale(fPoint(200, 200));
+	SetScale(fPoint(100, 100));
 	m_fVelocity = 200;
 	m_fDistance = 250;
 	m_bIsUpDir = true;
 
+	CreateCollider();
+	GetCollider()->SetScale(fPoint(90.f, 90.f));
 }
 
 CMonster::~CMonster()

@@ -40,6 +40,12 @@
     <Filter Include="Resource\Texture">
       <UniqueIdentifier>{5bc186af-ba25-4d4f-be50-058f2826435e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Component">
+      <UniqueIdentifier>{cbcef95c-8f0e-46a7-9fdc-c6f0fc375017}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Collider">
+      <UniqueIdentifier>{74147606-9a3e-4a84-9af0-bade1f6582e3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -102,6 +108,12 @@
     <ClInclude Include="CResourceManager.h">
       <Filter>Manager</Filter>
     </ClInclude>
+    <ClInclude Include="CCollider.h">
+      <Filter>Component\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectGDI.h">
+      <Filter>Util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winAPI_2D_imitation.cpp">
@@ -148,6 +160,12 @@
     </ClCompile>
     <ClCompile Include="CResourceManager.cpp">
       <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CCollider.cpp">
+      <Filter>Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectGDI.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -16,11 +16,8 @@ CScene_Start::~CScene_Start()
 void CScene_Start::Enter()
 {
 	// player 추가
-
 	CPlayer* pPlayer = new CPlayer;
-
 	pPlayer->SetPos(fPoint(500, 100));
-
 	AddObject(pPlayer, GROUP_GAMEOBJ::PLAYER);
 
 	// monster 추가

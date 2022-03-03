@@ -37,6 +37,7 @@ void CSceneManager::changeScene(GROUP_SCENE group)
 void CSceneManager::Update()
 {
 	m_pCurrScene->Update();
+	m_pCurrScene->FinalUpdate();
 }
 
 void CSceneManager::Render(HDC hDC)

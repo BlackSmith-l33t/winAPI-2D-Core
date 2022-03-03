@@ -47,6 +47,24 @@ enum class GROUP_GAMEOBJ
 	SIZE,
 };
 
+// Core DC : GDI 그룹 
+enum class TYPE_PEN
+{
+	RED,
+	GREEN,
+	BLUE,
+
+	SIZE,
+};
+
+enum class TYPE_BRUSH
+{
+	HOLLOW,
+
+	SIZE,
+};
+
+
 
 // Util
 #include "SingleTon.h"

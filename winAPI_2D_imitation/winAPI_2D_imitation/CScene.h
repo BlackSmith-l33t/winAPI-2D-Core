@@ -14,6 +14,7 @@ public:
 	virtual ~CScene();
 
 	virtual void Update();
+	virtual void FinalUpdate();
 	virtual void Render(HDC hDC);
 
 	virtual void Enter() = 0;

@@ -10,6 +10,7 @@ public:
 	~CMissile();
 
 	virtual void Update();
+	virtual void Render(HDC hDC);
 
 	void SetDir(fVec2 vec);
 	fVec2 GetDir();
