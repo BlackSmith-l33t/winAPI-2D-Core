@@ -64,6 +64,15 @@ enum class TYPE_BRUSH
 	SIZE,
 };
 
+// 이벤트 타입
+enum class TYPE_EVENT
+{
+	CREATE_OBJECT,
+	DELETE_OBJECT,
+	CHANGE_SCENE,
+
+	SIZE,
+};
 
 
 // Util
@@ -77,6 +86,7 @@ enum class TYPE_BRUSH
 #include "CSceneManager.h"
 #include "CPathManager.h"
 #include "CCollisionManager.h"
+#include "CEventManager.h"
 
 // 디파인문
 

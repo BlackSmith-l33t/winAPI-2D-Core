@@ -3,6 +3,7 @@ class CCollider;
 
 class CGameObject
 {
+	friend class CEventManager;
 private:
 	wstring m_strName;
 	fPoint m_fptPos;
