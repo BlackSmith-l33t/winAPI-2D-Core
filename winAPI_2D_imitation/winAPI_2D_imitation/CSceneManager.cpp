@@ -23,12 +23,7 @@ CSceneManager::~CSceneManager()
 }
 
 void CSceneManager::changeScene(GROUP_SCENE group)
-{
-	if (m_arrScene[(int)group] == m_pCurrScene)
-	{
-		return;
-	}
-
+{	
 	m_pCurrScene->Exit();
 	m_pCurrScene = m_arrScene[(int)group];
 	m_pCurrScene->Enter();
