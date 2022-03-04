@@ -114,6 +114,9 @@
     <ClInclude Include="SelectGDI.h">
       <Filter>Util</Filter>
     </ClInclude>
+    <ClInclude Include="CCollisionManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winAPI_2D_imitation.cpp">
@@ -164,8 +167,8 @@
     <ClCompile Include="CCollider.cpp">
       <Filter>Component\Collider</Filter>
     </ClCompile>
-    <ClCompile Include="SelectGDI.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="CCollisionManager.cpp">
+      <Filter>Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
