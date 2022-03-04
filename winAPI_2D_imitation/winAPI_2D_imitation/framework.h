@@ -76,6 +76,7 @@ enum class TYPE_BRUSH
 #include "CKeyManager.h"
 #include "CSceneManager.h"
 #include "CPathManager.h"
+#include "CCollisionManager.h"
 
 // 디파인문
 

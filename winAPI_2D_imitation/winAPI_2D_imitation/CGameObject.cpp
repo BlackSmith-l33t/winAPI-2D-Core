@@ -4,7 +4,10 @@
 
 CGameObject::CGameObject()
 {
+	m_fptPos = {};
+	m_fptScale = {};
 	m_pCollider = nullptr;
+	m_bAlive = true;
 }
 
 CGameObject::~CGameObject()
@@ -15,6 +18,11 @@ CGameObject::~CGameObject()
 	}
 }
 
+void CGameObject::SetDead()
+{
+	m_bAlive = false;
+}
+
 void CGameObject::SetPos(fPoint pos)
 {
 	m_fptPos = pos;
@@ -23,6 +31,21 @@ void CGameObject::SetPos(fPoint pos)
 void CGameObject::SetScale(fPoint scale)
 {
 	m_fptScale = scale;
+}
+
+void CGameObject::SetName(wstring name)
+{
+	m_strName = name;
+}
+
+wstring CGameObject::GetName()
+{
+	return m_strName;
+}
+
+bool CGameObject::isDead()
+{
+	return !m_bAlive;
 }
 
 fPoint CGameObject::GetPos()

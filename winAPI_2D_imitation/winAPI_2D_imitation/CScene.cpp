@@ -66,6 +66,11 @@ void CScene::AddObject(CGameObject* pObj, GROUP_GAMEOBJ type)
 	m_arrObj[(int)type].push_back(pObj);
 }
 
+const vector<CGameObject*>& CScene::GetGroupObject(GROUP_GAMEOBJ group)
+{
+	return m_arrObj[(UINT)group];
+}
+
 void CScene::Clear()
 {
 	for (int i = 0; i < (int)GROUP_GAMEOBJ::SIZE; i++)
