@@ -33,6 +33,7 @@ void CCore::update()
 	CTimeManager::getInst()->update();
 	CKeyManager::getInst()->Update();
 	CSceneManager::getInst()->Update();
+	CCollisionManager::getInst()->update();
 	
 	// 게임 정보 갱신 진행
 }
@@ -62,6 +63,7 @@ void CCore::init()
 	CTimeManager::getInst()->init();
 	CKeyManager::getInst()->Init();
 	CSceneManager::getInst()->Init();
+	CCollisionManager::getInst()->init();
 	
 	// 게임 윈도우의 DC 핸들값 가져오기
 	m_hDC = GetDC(hWnd);	

@@ -24,6 +24,7 @@ public:
 	wstring GetName();
 
 	void	AddObject(CGameObject* pObj, GROUP_GAMEOBJ type);
+	const vector<CGameObject*>& GetGroupObject(GROUP_GAMEOBJ group);
 
 protected:
 	void Clear();
