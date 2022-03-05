@@ -41,22 +41,45 @@ struct fPoint
 		return fPoint(x - other.x, y + other.y);
 	}
 
-};
-
-struct fVec2
-{
-	float x;
-	float y;
-
-	fVec2()
+	template <typename T>
+	fPoint operator*(T num)
 	{
-		x = 0;
-		y = 0;
+		return fPoint(x * num, y * num);
 	}
 
-	fVec2(float x, float y)
+	template <typename T>
+	fPoint operator/(T num)
 	{
-		this->x = x;
-		this->y = y;
+		assert(0 != num);
+
+		return fPoint(x / num, y / num);
 	}
+
+	fPoint Normalize()
+	{
+		float length = (float)sqrt((double)x * x + (double)y * y);
+
+		if (0 == length)
+		{
+			x = 0;
+			y = 0;
+		}
+		else
+		{
+			x = x / length;
+			y = y / length;
+		}
+
+		return *this;
+	}
+
+	float Length()
+	{
+		return sqrt(x * x + y * y);
+	}
+
 };
+
+typedef iPoint iVec2;
+typedef fPoint fVec2;
+

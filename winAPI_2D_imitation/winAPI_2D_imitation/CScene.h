@@ -26,7 +26,7 @@ public:
 	void	AddObject(CGameObject* pObj, GROUP_GAMEOBJ type);
 	const vector<CGameObject*>& GetGroupObject(GROUP_GAMEOBJ group);
 
-protected:
-	void Clear();
+	void DeleteGroup(GROUP_GAMEOBJ group);
+	void DeleteAll();
 };
 

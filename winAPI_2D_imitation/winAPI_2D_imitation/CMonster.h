@@ -11,10 +11,13 @@ private:
 public:
 	CMonster();
 	virtual ~CMonster();
+	virtual CMonster* Clone();
 
 	virtual void Update();
 
 	void SetCenterPos(fPoint point);
 	fPoint GetCenterPos();
+
+	void OnCollisionEnter(CCollider* pOther);
 };
 

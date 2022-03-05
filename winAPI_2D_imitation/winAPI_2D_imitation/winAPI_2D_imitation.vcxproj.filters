@@ -46,6 +46,12 @@
     <Filter Include="Component\Collider">
       <UniqueIdentifier>{74147606-9a3e-4a84-9af0-bade1f6582e3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Component\Animator">
+      <UniqueIdentifier>{d4946b32-3eb9-473e-9a76-f300b33936e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Animator\Animation">
+      <UniqueIdentifier>{c358a652-2bd1-4cab-9701-0ca2ea06e82a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -120,6 +126,12 @@
     <ClInclude Include="CEventManager.h">
       <Filter>Manager</Filter>
     </ClInclude>
+    <ClInclude Include="CAnimator.h">
+      <Filter>Component\Animator</Filter>
+    </ClInclude>
+    <ClInclude Include="CAnimation.h">
+      <Filter>Component\Animator\Animation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winAPI_2D_imitation.cpp">
@@ -178,6 +190,12 @@
     </ClCompile>
     <ClCompile Include="CEventManager.cpp">
       <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CAnimator.cpp">
+      <Filter>Component\Animator</Filter>
+    </ClCompile>
+    <ClCompile Include="CAnimation.cpp">
+      <Filter>Component\Animator\Animation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -24,7 +24,8 @@ void CScene::Update()
 	{
 		for (int j = 0; j < m_arrObj[i].size(); j++)
 		{
-			m_arrObj[i][j]->Update();
+			if (!m_arrObj[i][j]->isDead())
+				m_arrObj[i][j]->Update();
 		}
 	}
 }
@@ -44,9 +45,17 @@ void CScene::Render(HDC hDC)
 {
 	for (int i = 0; i < (int)GROUP_GAMEOBJ::SIZE; i++)
 	{
-		for (int j = 0; j < m_arrObj[i].size(); j++)
+		for (vector<CGameObject*>::iterator iter = m_arrObj[i].begin(); iter != m_arrObj[i].end();)
 		{
-			m_arrObj[i][j]->Render(hDC);
+			if (!(*iter)->isDead())
+			{
+				(*iter)->Render(hDC);
+				iter++;
+			}
+			else
+			{
+				iter = m_arrObj[i].erase(iter);
+			}
 		}
 	}
 }
@@ -71,14 +80,20 @@ const vector<CGameObject*>& CScene::GetGroupObject(GROUP_GAMEOBJ group)
 	return m_arrObj[(UINT)group];
 }
 
-void CScene::Clear()
+void CScene::DeleteGroup(GROUP_GAMEOBJ group)
 {
-	for (int i = 0; i < (int)GROUP_GAMEOBJ::SIZE; i++)
+	for (int i = 0; i < m_arrObj[(UINT)group].size(); i++)
 	{
-		while (!m_arrObj[i].empty())
-		{
-			delete m_arrObj[i][m_arrObj->size() - 1];
-			m_arrObj->pop_back();
-		}
+		delete m_arrObj[(UINT)group][i];
+	}
+	m_arrObj[(UINT)group].clear();
+}
+
+void CScene::DeleteAll()
+{
+	for (int i = 0; i < (UINT)GROUP_GAMEOBJ::SIZE; i++)
+	{
+		DeleteGroup((GROUP_GAMEOBJ)i);
 	}
 }
+
