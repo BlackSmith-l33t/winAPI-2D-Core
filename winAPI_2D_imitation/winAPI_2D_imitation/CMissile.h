@@ -8,11 +8,14 @@ private:
 public:
 	CMissile();
 	~CMissile();
+	virtual CMissile* Clone();
 
 	virtual void Update();
 	virtual void Render(HDC hDC);
 
 	void SetDir(fVec2 vec);
 	fVec2 GetDir();
+
+	void OnCollisionEnter(CCollider* pOther);
 };
 

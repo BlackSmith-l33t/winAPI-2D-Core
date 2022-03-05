@@ -13,6 +13,10 @@ CScene_Start::~CScene_Start()
 {
 }
 
+void CScene_Start::update()
+{
+	}
+
 void CScene_Start::Enter()
 {
 	// player Ãß°¡
@@ -25,9 +29,14 @@ void CScene_Start::Enter()
 	pMonster->SetPos(fPoint(1100, 350));
 	pMonster->SetCenterPos(pMonster->GetPos());
 	AddObject(pMonster, GROUP_GAMEOBJ::MONSTER);
+
+	CCollisionManager::getInst()->CheckGroup(GROUP_GAMEOBJ::PLAYER, GROUP_GAMEOBJ::MONSTER);
+	CCollisionManager::getInst()->CheckGroup(GROUP_GAMEOBJ::MISSILE_PLAYER, GROUP_GAMEOBJ::MONSTER);
 }
 
 void CScene_Start::Exit()
 {
-	Clear();
+	DeleteAll();
+
+	CCollisionManager::getInst()->Reset();
 }

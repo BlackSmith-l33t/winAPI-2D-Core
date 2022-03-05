@@ -1,5 +1,6 @@
 #pragma once
 class CCollider;
+class CAnimator;
 
 class CGameObject
 {
@@ -11,21 +12,23 @@ private:
 
 	// Component
 	CCollider* m_pCollider;
+	CAnimator* m_pAnimator;
 
 	bool m_bAlive;
 	void SetDead();
 public:
 	CGameObject();
-	~CGameObject();
+	CGameObject(const CGameObject& other);
+	virtual ~CGameObject();
+	virtual CGameObject* Clone() = 0;
 
-	fPoint GetPos();
-	void SetPos(fPoint pos);
-
-	fPoint GetScale();
-	void SetScale(fPoint scale);
-
-	void SetName(wstring name);
+	fPoint	GetPos();
 	wstring GetName();
+	fPoint	GetScale();
+
+	void SetPos(fPoint pos);
+	void SetScale(fPoint scale);
+	void SetName(wstring name);
 
 	bool isDead();
 
@@ -35,10 +38,13 @@ public:
 	virtual void Component_Render(HDC hDC);
 
 	CCollider* GetCollider();
-	void CreateCollider();
+	void	   CreateCollider();
 
 	virtual void OnCollision(CCollider* _pOther) {}			// 재정의용 충돌중 가상함수
 	virtual void OnCollisionEnter(CCollider* _pOther) {}	// 재정의용 충돌시 가상함수
 	virtual void OnCollisionExit(CCollider* _pOther) {}		// 재정의용 탈충돌 가상함수
+
+	CAnimator* GetAnimator(); // 애니메이터 반환
+	void	   CreateAnimator();    // 애니메이터 생성
 };
 

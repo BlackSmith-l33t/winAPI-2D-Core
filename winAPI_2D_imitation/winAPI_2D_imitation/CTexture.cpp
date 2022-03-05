@@ -10,6 +10,8 @@ CTexture::CTexture()
 
 CTexture::~CTexture()
 {
+	DeleteDC(m_hDC);
+	DeleteObject(m_hBMP);
 }
 
 HDC CTexture::GetDC()
@@ -29,12 +31,12 @@ BITMAP CTexture::GetBitInfo()
 
 int CTexture::GetBMPWidth()
 {
-	return m_bmpInfo.bmWidth;
+	return (int)m_bmpInfo.bmWidth;
 }
 
 int CTexture::GetBMPHeight()
 {
-	return m_bmpInfo.bmHeight;
+	return (int)m_bmpInfo.bmHeight;
 }
 
 void CTexture::Load(const wstring& strFilePath)

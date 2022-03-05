@@ -42,7 +42,8 @@ enum class GROUP_GAMEOBJ
 	DEFAULT,
 	PLAYER,
 	MONSTER,
-	MISSILE,
+	MISSILE_PLAYER,
+	MISSILE_MONSTER,
 
 	SIZE,
 };
@@ -96,12 +97,16 @@ enum class TYPE_EVENT
 #define WINSIZEY	720
 #define WINSTYLE	WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX
 
-
 #define DT					CTimeManager::getInst()->GetDT();
+#define fDT					CTimeManager::getInst()->GetfDT();
+
 #define KEY(vk_key)			CKeyManager::getInst()->GetButton(vk_key)
 #define KEYDOWN(vk_key)		CKeyManager::getInst()->GetButtonDown(vk_key)
 #define KEYUP(vk_key)		CKeyManager::getInst()->GetButtonUp(vk_key)
 
+#define CreateObj(pObj, group)	CEventManager::getInst()->EventCreateObject(pObj, group)
+#define DeleteObj(pObj)			CEventManager::getInst()->EventDeleteObject(pObj)
+#define ChangeScn(scene)		CEventManager::getInst()->EventChangeScene(scene)
 
 // 전역 변수 : 인스턴스, 윈도우 핸들
 extern HINSTANCE hInst;
