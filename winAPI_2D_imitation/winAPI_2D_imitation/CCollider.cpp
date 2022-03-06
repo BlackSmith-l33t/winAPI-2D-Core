@@ -70,13 +70,13 @@ UINT CCollider::GetID()
 	return m_iID;
 }
 
-void CCollider::FinalUpdate()
+void CCollider::finalupdate()
 {
 	fPoint fptObjectPos = m_pOwner->GetPos();
 	m_fptFinalPos = fptObjectPos + m_fptOffsetPos;
 }
 
-void CCollider::Render(HDC hDC)
+void CCollider::render(HDC hDC)
 {
 	TYPE_PEN typePen;
 	if (m_iColCount)
@@ -87,11 +87,13 @@ void CCollider::Render(HDC hDC)
 	SelectGDI brush(hDC, TYPE_BRUSH::HOLLOW);
 	SelectGDI pen(hDC, typePen);
 
+	fPoint fptRenderPos = CCameraManager::getInst()->GetRenderPos(m_fptFinalPos);
+
 	Rectangle(hDC,
-		(int)(m_fptFinalPos.x - m_fptScale.x / 2.f),
-		(int)(m_fptFinalPos.y - m_fptScale.y / 2.f),
-		(int)(m_fptFinalPos.x + m_fptScale.x / 2.f),
-		(int)(m_fptFinalPos.y + m_fptScale.y / 2.f));
+		(int)(fptRenderPos.x - m_fptScale.x / 2.f),
+		(int)(fptRenderPos.y - m_fptScale.y / 2.f),
+		(int)(fptRenderPos.x + m_fptScale.x / 2.f),
+		(int)(fptRenderPos.y + m_fptScale.y / 2.f));
 }
 
 void CCollider::OnCollision(CCollider* pOther)

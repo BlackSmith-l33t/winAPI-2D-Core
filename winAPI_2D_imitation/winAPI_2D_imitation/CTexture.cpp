@@ -5,7 +5,7 @@ CTexture::CTexture()
 {
 	m_hDC = 0;
 	m_hBMP = 0;
-	m_bmpInfo = { };
+	m_bmpInfo = {};
 }
 
 CTexture::~CTexture()
@@ -29,36 +29,34 @@ BITMAP CTexture::GetBitInfo()
 	return m_bmpInfo;
 }
 
-int CTexture::GetBMPWidth()
+int CTexture::GetBmpWidth()
 {
-	return (int)m_bmpInfo.bmWidth;
+	return (int)(m_bmpInfo.bmWidth);
 }
 
-int CTexture::GetBMPHeight()
+int CTexture::GetBmpHeight()
 {
-	return (int)m_bmpInfo.bmHeight;
+	return (int)(m_bmpInfo.bmHeight);
 }
 
 void CTexture::Load(const wstring& strFilePath)
 {
 	m_hBMP = (HBITMAP)LoadImage(
-		nullptr,								// hInstance, nulltptr로 유지
-		strFilePath.c_str(),					// 파일의 경로, C Style의 문자열 
+		nullptr,								// hInstance. nullptr로 해도 됨.
+		strFilePath.c_str(),					// 파일 경로를 C style 문자열로 변환
 		IMAGE_BITMAP,							// 이미지 타입, 비트맵 이미지로 지정
-		0, 0,									// 이미지의 XY 크기, 0을 주면 자동으로 이미지크기 설정
-		LR_CREATEDIBSECTION | LR_LOADFROMFILE); // 이미지의 속성
+		0, 0,									// 이미지의 X, Y 크기, 0을 주면 이미지 크기로 설정
+		LR_CREATEDIBSECTION | LR_LOADFROMFILE	// 이미지 로딩 타입.
+	);
 
-	if (0 == m_hBMP)
-	{
-		assert(nullptr);
-	}
+	assert(m_hBMP);		// 이미지가 없다면 assert
 
-	// 비트맵을 가지고 BMPInfo
+	// 비트맵과 연결할 DC
 	m_hDC = CreateCompatibleDC(CCore::getInst()->GetMainDC());
 
 	// 비트맵과 DC 연결
-	HBITMAP hOldBitmap = (HBITMAP)SelectObject(m_hDC, m_hBMP);
+	HBITMAP hPrevBit = (HBITMAP)SelectObject(m_hDC, m_hBMP);
 
-	// 비트맵 Info 추출
+	// 비트맵 정보
 	GetObject(m_hBMP, sizeof(BITMAP), &m_bmpInfo);
 }

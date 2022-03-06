@@ -1,17 +1,18 @@
 #pragma once
 class CResource
-{	
+{
 private:
-	wstring m_strPath;
 	wstring m_strKey;
+	wstring m_strRelativePath;
+
 public:
 	CResource();
 	virtual ~CResource();
 
 	void SetKey(const wstring& strKey);
-	const wstring& GetKey();
+	void SetRelativePath(const wstring& strPath);
 
-	void SetPath(const wstring& strPath);
-	const wstring& GetPath();
+	const wstring& GetKey();
+	const wstring& GetRelativePath();
 };
 

@@ -3,40 +3,38 @@
 
 CPathManager::CPathManager()
 {
-	m_szContentPath[0] = { };
+	m_strContentPath[0] = {};
 }
 
 CPathManager::~CPathManager()
 {
+
 }
 
 void CPathManager::init()
 {
-	// 경로 : (게임 솔루션 경로) \Output\Debug
-	// 경로 : (게임 솔루션 경로) \Output\Release
-	GetCurrentDirectory(MAXSIZE_PATH, m_szContentPath); // 프로그램 경로를 확인하는 함수
-	
-	// 경로의 사이즈 구함
-	int size = wcslen(m_szContentPath);
+	GetCurrentDirectory(255, m_strContentPath);
 
-	for (int i = size - 1; i >= 0; i--)
+	// 상위 폴더로
+	// + bin\\content\\
+
+	int iLen = (int)wcslen(m_strContentPath);		// wchar_t 문자열의 길이 확인
+
+	for (int i = iLen - 1; i >= 0; i--)
 	{
-		// \\을 찾아서 \0으로 변경 : 첫번째 \\미만 삭제
-		if ('\\' == m_szContentPath[i])
+		if ('\\' == m_strContentPath[i])
 		{
-			m_szContentPath[i] = '\0';
+			m_strContentPath[i] = '\0';
 			break;
 		}
 	}
-	// 결로를 상위폴더로 이동 -> (게임 솔루션 경로) \Output
 
-	// Release-> content 폴더에 있는 리소스로 접근
-	wcscat_s(m_szContentPath, MAXSIZE_PATH, L"\\Release\\content\\");
+	wcscat_s(m_strContentPath, 255, L"\\Release\\content\\");	// wchar_t 문자열 뒤에 문자열 붙이기
 
-	// TODO : Logger 추가 하기
+	Logger::info(m_strContentPath);
 }
 
-const WCHAR* CPathManager::GetContentPath()
+const wchar_t* CPathManager::GetContentPath()
 {
-	return m_szContentPath;
+	return m_strContentPath;
 }

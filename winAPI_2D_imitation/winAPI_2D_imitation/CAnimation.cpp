@@ -27,7 +27,7 @@ const wstring& CAnimation::GetName()
     return m_strName;
 }
 
-void CAnimation::setFrame(int frmIndex)
+void CAnimation::SetFrame(int frmIndex)
 {
     m_iCurFrm = frmIndex;
 }
@@ -43,10 +43,9 @@ void CAnimation::update()
 
     if (m_vecFrm[m_iCurFrm].fDuration < m_fAccTime)
     {
-        m_fAccTime -= m_vecFrm[m_iCurFrm].fDuration;
         m_iCurFrm++;
-        // 반복 재생
         m_iCurFrm %= m_vecFrm.size();
+        m_fAccTime -= m_vecFrm[m_iCurFrm].fDuration;
     }
 }
 
@@ -57,6 +56,7 @@ void CAnimation::render(HDC hDC)
     tAniFrm frm = m_vecFrm[m_iCurFrm];
 
     fptPos = fptPos + frm.fptOffset;
+    fptPos = CCameraManager::getInst()->GetRenderPos(fptPos);
 
     TransparentBlt(hDC,
         (int)(fptPos.x - frm.fptSlice.x / 2.f),
@@ -71,12 +71,12 @@ void CAnimation::render(HDC hDC)
         RGB(255, 0, 255));
 }
 
-void CAnimation::Create(CTexture* tex,         // 애니메이션 이미지
-                        fPoint    lt,          // 애니메이션 시작 프레임의 좌상단 좌표
-                        fPoint    slice,       // 애니메이션 프레임의 크기
-                        fPoint    step,        // 애니메이션 프레임의 반복 위치 
-                        float     duration,    // 애니메이션 프레임 지속시간  
-                        UINT      frmCount)    // 애니메이션 프레임 갯수
+void CAnimation::Create(CTexture* tex,      // 애니메이션의 이미지
+                        fPoint lt,          // 애니메이션 시작 프레임의 좌상단 좌표
+                        fPoint slice,       // 애니메이션 프레임의 크기
+                        fPoint step,        // 애니메이션 프레임의 반복 위치
+                        float duration,     // 애니메이션 프레임 지속시간
+                        UINT frmCount)      // 애니메이션 프레임 갯수
 {
     m_pTex = tex;
 

@@ -26,7 +26,7 @@ void CEventManager::Execute(const tEvent& event)
 
 		CSceneManager::getInst()->GetCurScene()->AddObject(pObj, group);
 	}
-	break;
+		break;
 	case TYPE_EVENT::DELETE_OBJECT:
 	{
 		// lParam : Object 주소
@@ -36,14 +36,14 @@ void CEventManager::Execute(const tEvent& event)
 		pObj->SetDead();
 		m_vecDead.push_back(pObj);
 	}
-	break;
+		break;
 	case TYPE_EVENT::CHANGE_SCENE:
 	{
 		// lParam : scene 그룹
 		GROUP_SCENE scene = (GROUP_SCENE)event.lParam;
-		CSceneManager::getInst()->changeScene(scene);
+		CSceneManager::getInst()->ChangeScene(scene);
 	}
-	break;
+		break;
 	}
 }
 

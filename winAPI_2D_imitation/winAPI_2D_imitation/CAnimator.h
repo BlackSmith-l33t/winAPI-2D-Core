@@ -9,9 +9,9 @@ class CAnimator
 	friend class CGameObject;
 
 private:
-	map<wstring, CAnimation*> m_mapAni;
-	CAnimation* m_pCurAni;
-	CGameObject* m_pOwner;
+	map<wstring, CAnimation*>	m_mapAni;
+	CAnimation*					m_pCurAni;
+	CGameObject*				m_pOwner;
 
 public:
 	CAnimator();

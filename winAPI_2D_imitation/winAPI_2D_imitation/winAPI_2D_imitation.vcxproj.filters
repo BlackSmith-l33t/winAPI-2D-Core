@@ -132,6 +132,9 @@
     <ClInclude Include="CAnimation.h">
       <Filter>Component\Animator\Animation</Filter>
     </ClInclude>
+    <ClInclude Include="CCameraManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winAPI_2D_imitation.cpp">
@@ -196,6 +199,9 @@
     </ClCompile>
     <ClCompile Include="CAnimation.cpp">
       <Filter>Component\Animator\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="CCameraManager.cpp">
+      <Filter>Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

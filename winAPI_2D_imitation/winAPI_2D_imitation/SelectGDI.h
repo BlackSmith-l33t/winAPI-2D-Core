@@ -3,28 +3,27 @@ class SelectGDI
 {
 private:
 	HDC m_hDC;
-	HPEN m_hOldPen;
-	HBRUSH m_hOldBrush;
+	HPEN m_hDefaultPen;
+	HBRUSH m_hDefaultBrush;
+
 public:
-	SelectGDI(HDC hDC, TYPE_BRUSH brush)
+	SelectGDI(HDC hDC, TYPE_BRUSH brushType)
 	{
 		m_hDC = hDC;
-		HBRUSH hBrush = CCore::getInst()->GetBrush(brush);
-		m_hOldBrush = (HBRUSH)SelectObject(hDC, hBrush);
-		m_hOldPen = 0;
+		HBRUSH hBrush = CCore::getInst()->GetBrush(brushType);
+		m_hDefaultBrush = (HBRUSH)SelectObject(hDC, hBrush);
+		m_hDefaultPen = 0;
 	}
-
-	SelectGDI(HDC hDC, TYPE_PEN pen)
+	SelectGDI(HDC hDC, TYPE_PEN penType)
 	{
 		m_hDC = hDC;
-		HPEN hPen = CCore::getInst()->GetPen(pen);
-		m_hOldPen = (HPEN)SelectObject(hDC, hPen);
-		m_hOldBrush = 0;
+		HPEN hPen = CCore::getInst()->GetPen(penType);
+		m_hDefaultPen = (HPEN)SelectObject(hDC, hPen);
+		m_hDefaultBrush = 0;
 	}
-
 	~SelectGDI()
 	{
-		SelectObject(m_hDC, m_hOldBrush);
-		SelectObject(m_hDC, m_hOldPen);
+		SelectObject(m_hDC, m_hDefaultBrush);
+		SelectObject(m_hDC, m_hDefaultPen);
 	}
 };

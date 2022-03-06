@@ -1,22 +1,22 @@
 #pragma once
 #include "CGameObject.h"
+
 class CMonster : public CGameObject
 {
 private:
 	fPoint m_fptCenterPos;
 	float m_fVelocity;
 	float m_fDistance;
-	bool  m_bIsUpDir;
+	bool m_bIsUPDir;
 
 public:
 	CMonster();
-	virtual ~CMonster();
+	~CMonster();
 	virtual CMonster* Clone();
 
-	virtual void Update();
+	virtual void update();
 
 	void SetCenterPos(fPoint point);
-	fPoint GetCenterPos();
 
 	void OnCollisionEnter(CCollider* pOther);
 };

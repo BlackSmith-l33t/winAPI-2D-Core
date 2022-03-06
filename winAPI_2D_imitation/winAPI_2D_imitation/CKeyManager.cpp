@@ -6,8 +6,8 @@ CKeyManager::CKeyManager()
 	// 키 상태를 모두 눌리지 않은 상태로 초기화
 	for (int key = 0; key < VKEY_SIZE; key++)
 	{
-		m_arrPrevKey[key] = false;
-		m_arrCurKey[key] = false;
+		m_arrPrevKey[key]	= false;
+		m_arrCurKey[key]	= false;
 	}
 }
 
@@ -16,14 +16,13 @@ CKeyManager::~CKeyManager()
 
 }
 
-void CKeyManager::Update()
+void CKeyManager::update()
 {
 	// 현재 선택(Focus)된 윈도우가 게임 윈도우인가를 확인
 	HWND curWnd = GetFocus();
-	// 만약 게임 윈도우가 선택된 윈도우가 아닐 경우
 	if (hWnd != curWnd)
 	{
-		//  윈도우가 선택된 상태가 아닐 경우 키입력을 모두 false(해제) 시킴
+		// 윈도우가 선택(Focus)된 상태가 아닐 경우 키입력을 해제시킴
 		for (int key = 0; key < VKEY_SIZE; key++)
 		{
 			m_arrPrevKey[key] = m_arrCurKey[key];
@@ -31,7 +30,8 @@ void CKeyManager::Update()
 		}
 		return;
 	}
-	// 모든 키 사이즈만큼 반복하면서 그 키의 입력 상태를 확인
+
+	// 모든 키 사이즈만큼 반복하며 입력상태를 확인
 	for (int key = 0; key < VKEY_SIZE; key++)
 	{
 		m_arrPrevKey[key] = m_arrCurKey[key];
@@ -44,23 +44,39 @@ void CKeyManager::Update()
 			m_arrCurKey[key] = false;
 		}
 	}
+
+	// Mouse 좌표 계산
+	POINT ptPos = {};
+	// GetCursorPos() 윈도우에서 모니터 좌상단 기준 마우스의 좌표를 반환
+	GetCursorPos(&ptPos);
+	// 모니터 좌상단 기준 마우스 좌표를 게임 윈도우 기준 마우스 위치로 계산
+	ScreenToClient(hWnd, &ptPos);
+
+	m_fptCurMousePos = fPoint((float)ptPos.x, (float)ptPos.y);
 }
 
-void CKeyManager::Init()
+void CKeyManager::init()
 {
+	
 }
 
 bool CKeyManager::GetButton(const int key)
 {
-	return (true == m_arrPrevKey[key] && true == m_arrCurKey[key]);
+	return (true == m_arrCurKey[key] && true == m_arrPrevKey[key]);
 }
 
-bool CKeyManager::GetButtonDown(const int key)
+bool CKeyManager::GetButtonUP(const int key)
 {
-	return (false == m_arrPrevKey[key] && true == m_arrCurKey[key]);
+	return (false == m_arrCurKey[key] && true == m_arrPrevKey[key]);
 }
 
-bool CKeyManager::GetButtonUp(const int key)
+bool CKeyManager::GetButtonDOWN(const int key)
 {
-	return (true == m_arrPrevKey[key] && false == m_arrCurKey[key]);
+	return (true == m_arrCurKey[key] && false == m_arrPrevKey[key]);
 }
+
+fPoint CKeyManager::GetMousePos()
+{
+	return m_fptCurMousePos;
+}
+
