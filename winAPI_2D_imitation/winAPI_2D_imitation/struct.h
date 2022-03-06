@@ -38,7 +38,7 @@ struct fPoint
 
 	fPoint operator-(const fPoint& other)
 	{
-		return fPoint(x - other.x, y + other.y);
+		return fPoint(x - other.x, y - other.y);
 	}
 
 	template <typename T>
@@ -55,7 +55,7 @@ struct fPoint
 		return fPoint(x / num, y / num);
 	}
 
-	fPoint Normalize()
+	fPoint& normalize()
 	{
 		float length = (float)sqrt((double)x * x + (double)y * y);
 
@@ -75,11 +75,9 @@ struct fPoint
 
 	float Length()
 	{
-		return sqrt(x * x + y * y);
+		return (float)sqrt((double)x * x + (double)y * y);
 	}
-
 };
 
 typedef iPoint iVec2;
 typedef fPoint fVec2;
-

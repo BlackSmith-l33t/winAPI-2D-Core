@@ -3,8 +3,6 @@
 
 CResource::CResource()
 {
-	m_strKey = {};
-	m_strPath = {};
 }
 
 CResource::~CResource()
@@ -16,17 +14,17 @@ void CResource::SetKey(const wstring& strKey)
 	m_strKey = strKey;
 }
 
+void CResource::SetRelativePath(const wstring& strPath)
+{
+	m_strRelativePath = strPath;
+}
+
 const wstring& CResource::GetKey()
 {
 	return m_strKey;
 }
 
-void CResource::SetPath(const wstring& strPath)
+const wstring& CResource::GetRelativePath()
 {
-	m_strPath = strPath;
-}
-
-const wstring& CResource::GetPath()
-{
-	return m_strPath;
+	return m_strRelativePath;
 }

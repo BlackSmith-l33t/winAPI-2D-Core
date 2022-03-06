@@ -8,17 +8,18 @@ CGameObject::CGameObject()
 	m_fptPos = {};
 	m_fptScale = {};
 	m_pCollider = nullptr;
+	m_pAnimator = nullptr;
 	m_bAlive = true;
 }
 
 CGameObject::CGameObject(const CGameObject& other)
 {
-	m_strName = other.m_strName;
-	m_fptPos = other.m_fptPos;
-	m_fptScale = other.m_fptScale;
+	m_strName	= other.m_strName;
+	m_fptPos	= other.m_fptPos;
+	m_fptScale	= other.m_fptScale;
 	m_pCollider = nullptr;
 	m_pAnimator = nullptr;
-	m_bAlive = true;
+	m_bAlive	= true;
 
 	if (nullptr != other.m_pCollider)
 	{
@@ -44,11 +45,6 @@ CGameObject::~CGameObject()
 	}
 }
 
-void CGameObject::SetDead()
-{
-	m_bAlive = false;
-}
-
 void CGameObject::SetPos(fPoint pos)
 {
 	m_fptPos = pos;
@@ -64,16 +60,6 @@ void CGameObject::SetName(wstring name)
 	m_strName = name;
 }
 
-wstring CGameObject::GetName()
-{
-	return m_strName;
-}
-
-bool CGameObject::isDead()
-{
-	return !m_bAlive;
-}
-
 fPoint CGameObject::GetPos()
 {
 	return m_fptPos;
@@ -84,36 +70,59 @@ fPoint CGameObject::GetScale()
 	return m_fptScale;
 }
 
-void CGameObject::FinalUpdate()
+wstring CGameObject::GetName()
+{
+	return m_strName;
+}
+
+bool CGameObject::isDead()
+{
+	return !m_bAlive;
+}
+
+void CGameObject::SetDead()
+{
+	m_bAlive = false;
+}
+
+void CGameObject::finalupdate()
 {
 	if (nullptr != m_pCollider)
 	{
-		m_pCollider->FinalUpdate();
+		m_pCollider->finalupdate();
 	}
 }
 
-void CGameObject::Render(HDC hDC)
+void CGameObject::render(HDC hDC)
 {
-	// Test용 (지워야 할 것)
-	Rectangle(hDC,
-		(int)m_fptPos.x - m_fptScale.x / 2,
-		(int)m_fptPos.y - m_fptScale.y / 2,
-		(int)m_fptPos.x + m_fptScale.x / 2,
-		(int)m_fptPos.y + m_fptScale.y / 2);	
+	// 절대 위치를 넘기고, 랜더링 위치를 받아옴
+	fPoint fptRenderPos = CCameraManager::getInst()->GetRenderPos(m_fptPos);
 
-	Component_Render(hDC);
+	// 카메라를 기준으로 그려져야하는 위치
+	Rectangle(hDC,
+		(int)(fptRenderPos.x - m_fptScale.x / 2),
+		(int)(fptRenderPos.y - m_fptScale.y / 2),
+		(int)(fptRenderPos.x + m_fptScale.x / 2),
+		(int)(fptRenderPos.y + m_fptScale.y / 2));
+
+	component_render(hDC);
 }
 
-void CGameObject::Component_Render(HDC hDC)
+void CGameObject::component_render(HDC hDC)
 {
+	if (nullptr != m_pCollider)
+	{
+		m_pCollider->render(hDC);
+	}
 	if (nullptr != m_pAnimator)
 	{
 		m_pAnimator->render(hDC);
 	}
-	if (nullptr != m_pCollider)
-	{
-		m_pCollider->Render(hDC);
-	}
+}
+
+CCollider* CGameObject::GetCollider()
+{
+	return m_pCollider;
 }
 
 void CGameObject::CreateCollider()
@@ -132,10 +141,3 @@ void CGameObject::CreateAnimator()
 	m_pAnimator = new CAnimator;
 	m_pAnimator->m_pOwner = this;
 }
-
-CCollider* CGameObject::GetCollider()
-{
-	return m_pCollider;
-}
-
-

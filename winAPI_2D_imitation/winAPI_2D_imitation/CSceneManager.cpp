@@ -4,15 +4,17 @@
 
 CSceneManager::CSceneManager()
 {
+	// 씬 목록 초기화
 	for (int i = 0; i < (int)GROUP_SCENE::SIZE; i++)
 	{
 		m_arrScene[i] = nullptr;
 	}
-	m_pCurrScene = nullptr;
+	m_pCurScene = nullptr;
 }
 
 CSceneManager::~CSceneManager()
 {
+	// 씬 목록 삭제
 	for (int i = 0; i < (int)GROUP_SCENE::SIZE; i++)
 	{
 		if (nullptr != m_arrScene[i])
@@ -22,35 +24,34 @@ CSceneManager::~CSceneManager()
 	}
 }
 
-void CSceneManager::changeScene(GROUP_SCENE group)
-{	
-	m_pCurrScene->Exit();
-	m_pCurrScene = m_arrScene[(int)group];
-	m_pCurrScene->Enter();
+void CSceneManager::ChangeScene(GROUP_SCENE scene)
+{
+	m_pCurScene->Exit();
+	m_pCurScene = m_arrScene[(UINT)scene];
+	m_pCurScene->Enter();
 }
 
-void CSceneManager::Update()
+void CSceneManager::update()
 {
-	m_pCurrScene->Update();
-	m_pCurrScene->FinalUpdate();
+	m_pCurScene->update();
+	m_pCurScene->finalupdate();
 }
 
-void CSceneManager::Render(HDC hDC)
+void CSceneManager::render(HDC hDC)
 {
-	m_pCurrScene->Render(hDC);
+	m_pCurScene->render(hDC);
+}
+
+void CSceneManager::init()
+{
+	m_arrScene[(size_t)GROUP_SCENE::START] = new CScene_Start;
+	m_arrScene[(size_t)GROUP_SCENE::START]->SetName(L"Start_Scene");
+
+	m_pCurScene = m_arrScene[(size_t)GROUP_SCENE::START];
+	m_pCurScene->Enter();
 }
 
 CScene* CSceneManager::GetCurScene()
 {
-	return m_pCurrScene;
+	return m_pCurScene;
 }
-
-void CSceneManager::Init()
-{
-	m_arrScene[(int)GROUP_SCENE::START] = new CScene_Start;
-	m_arrScene[(int)GROUP_SCENE::START]->SetName(L"Start_Scene");
-
-	m_pCurrScene = m_arrScene[(int)GROUP_SCENE::START];
-	m_pCurrScene->Enter();
-}
-

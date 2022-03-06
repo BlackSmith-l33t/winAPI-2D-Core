@@ -3,14 +3,12 @@ class CPathManager
 {
 	SINGLETON(CPathManager);
 
-public:
-	const static int MAXSIZE_PATH = 255;
 private:
-	WCHAR m_szContentPath[MAXSIZE_PATH];  // 리소스 경로를 저장
+	WCHAR m_strContentPath[255];		// 윈도우 최대 경로 255
 
 public:
 	void init();
 
-	const WCHAR* GetContentPath();
+	const wchar_t* GetContentPath();	// 리소스 저장 폴더의 경로 반환
 };
 

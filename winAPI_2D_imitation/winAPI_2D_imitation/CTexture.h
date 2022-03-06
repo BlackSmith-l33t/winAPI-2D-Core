@@ -3,20 +3,20 @@
 class CTexture : public CResource
 {
 private:
-	HDC m_hDC;
+	HDC		m_hDC;
 	HBITMAP m_hBMP;
-	BITMAP m_bmpInfo;
+	BITMAP	m_bmpInfo;
 
 public:
 	CTexture();
 	virtual ~CTexture();
-	
+
 	HDC GetDC();
 	HBITMAP GetBitmap();
 	BITMAP GetBitInfo();
 
-	int GetBMPWidth();
-	int GetBMPHeight();
+	int GetBmpWidth();
+	int GetBmpHeight();
 
 	void Load(const wstring& strFilePath);
 };

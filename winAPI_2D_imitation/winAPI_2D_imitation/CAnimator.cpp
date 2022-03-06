@@ -13,9 +13,7 @@ CAnimator::~CAnimator()
 	for (map<wstring, CAnimation*>::iterator iter = m_mapAni.begin(); iter != m_mapAni.end(); iter++)
 	{
 		if (nullptr != iter->second)
-		{
 			delete iter->second;
-		}
 	}
 	m_mapAni.clear();
 }
@@ -37,7 +35,7 @@ void CAnimator::render(HDC hDC)
 {
 	if (nullptr != m_pCurAni)
 	{
-		m_pCurAni->render(hDC);;
+		m_pCurAni->render(hDC);
 	}
 }
 

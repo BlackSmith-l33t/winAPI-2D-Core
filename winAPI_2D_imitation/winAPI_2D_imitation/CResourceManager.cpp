@@ -4,53 +4,55 @@
 
 CResourceManager::CResourceManager()
 {
-    m_mapTex = {};
+	m_mapTex = {};
 }
 
 CResourceManager::~CResourceManager()
 {
-    for (map<wstring, CTexture*>::iterator iter = m_mapTex.begin(); iter != m_mapTex.end(); iter++)
-    {
-        if (nullptr != iter->second)
-        {
-            delete iter->second;
-        }
-    }
-    m_mapTex.clear();
+	// 자료구조에 저장된 모든 Texture 삭제
+	for (map<wstring, CTexture*>::iterator iter = m_mapTex.begin(); iter != m_mapTex.end(); iter++)
+	{
+		if (nullptr != iter->second)
+		{
+			delete iter->second;
+		}
+	}
+	m_mapTex.clear();
 }
 
 CTexture* CResourceManager::FindTexture(const wstring& strKey)
 {
-    map<wstring, CTexture*>::iterator iter = m_mapTex.find(strKey);
+	// Texture 키 값을 통해 탐색
+	map<wstring, CTexture*>::iterator iter = m_mapTex.find(strKey);
+	
+	if (m_mapTex.end() == iter)
+	{
+		return nullptr;
+	}
 
-    if (m_mapTex.end() == iter)
-    {
-        return nullptr;
-    }
-    else
-    {
-        return iter->second;
-    }
-    return nullptr;
+	return iter->second;
 }
 
-CTexture* CResourceManager::LoadTexture(const wstring& strKey, const wstring& strPath)
+CTexture* CResourceManager::LoadTextrue(const wstring& strKey, const wstring& strRelativePath)
 {
-    CTexture* pTex = FindTexture(strKey);
-    if (nullptr != pTex)
-    {
-        return pTex;
-    }
+	// Texture를 불러오기 전 자료구조에 이미 Texture가 있는지 확인
+	CTexture* pTex = FindTexture(strKey);
+	if (nullptr != pTex)
+	{
+		return pTex;
+	}
+	
+	// Texture 저장 경로 확인
+	wstring strFilePath = CPathManager::getInst()->GetContentPath();
+	strFilePath += strRelativePath;
 
-    wstring strFilePath = CPathManager::getInst()->GetContentPath();
-    strFilePath += strPath;
+	// Texture 생성 후 저장
+	pTex = new CTexture;
+	pTex->Load(strFilePath);
+	pTex->SetKey(strKey);
+	pTex->SetRelativePath(strRelativePath);
 
-    pTex = new CTexture();
-    pTex->Load(strFilePath);
-    pTex->SetKey(strKey);
-    pTex->SetPath(strPath);
-
-    m_mapTex.insert(make_pair(strKey, pTex));
-
-    return pTex;
+	m_mapTex.insert(make_pair(strKey, pTex));
+	
+	return pTex;
 }

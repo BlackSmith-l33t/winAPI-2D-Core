@@ -2,9 +2,13 @@
 #include "CMissile.h"
 #include "CCollider.h"
 
+CMissile* CMissile::Clone()
+{
+	return new CMissile(*this);
+}
+
 CMissile::CMissile()
 {
-	m_fVelocity = 200;
 	SetScale(fPoint(25.f, 25.f));
 	m_fvDir = fVec2(0, 0);
 	SetName(L"Missile_Player");
@@ -15,15 +19,9 @@ CMissile::CMissile()
 
 CMissile::~CMissile()
 {
-
 }
 
-CMissile* CMissile::Clone()
-{
-	return new CMissile(*this);
-}
-
-void CMissile::Update()
+void CMissile::update()
 {
 	fPoint pos = GetPos();
 
@@ -32,36 +30,43 @@ void CMissile::Update()
 
 	SetPos(pos);
 
-	if (pos.x || pos.x > WINSIZEX || pos.y < 0 || pos.y > WINSIZEY)
-	{
+	if (pos.x < 0 || pos.x > WINSIZEX
+		|| pos.y < 0 || pos.y > WINSIZEY)
 		DeleteObj(this);
-	}
 }
 
-void CMissile::Render(HDC hDC)
+void CMissile::render(HDC hDC)
 {
 	fPoint pos = GetPos();
 	fPoint scale = GetScale();
 
-	Ellipse(hDC,
-		(int)(pos.x - scale.x / 2.f),
-		(int)(pos.y - scale.y / 2.f),
-		(int)(pos.x + scale.x / 2.f),
-		(int)(pos.y + scale.y / 2.f));
+	fPoint fptRenderPos = CCameraManager::getInst()->GetRenderPos(pos);
 
-	Component_Render(hDC);
+	Ellipse(hDC,
+		(int)(fptRenderPos.x - scale.x / 2.f),
+		(int)(fptRenderPos.y - scale.y / 2.f),
+		(int)(fptRenderPos.x + scale.x / 2.f),
+		(int)(fptRenderPos.y + scale.y / 2.f));
+
+	component_render(hDC);
 }
 
 void CMissile::SetDir(fVec2 vec)
 {
-	m_fvDir = vec;
+	m_fvDir = vec.normalize();
 }
 
-fVec2 CMissile::GetDir()
+void CMissile::SetDir(float theta)
 {
-	return m_fvDir;
+	m_fvDir.x = (float)cos(theta);
+	m_fvDir.y = (float)sin(theta);
 }
 
 void CMissile::OnCollisionEnter(CCollider* pOther)
 {
+	CGameObject* pOtherObj = pOther->GetObj();
+	if (pOtherObj->GetName() == L"Monster")
+	{
+		DeleteObj(this);
+	}
 }
