@@ -9,28 +9,32 @@
 
 CPlayer::CPlayer()
 {
-	m_pTex = CResourceManager::getInst()->LoadTextrue(L"PlayerTex", L"texture\\Animation\\Animation_Player.bmp");
+	m_pTex = CResourceManager::getInst()->LoadTextrue(L"PlayerTex", L"texture\\Animation\\Player.bmp");
 	SetName(L"Player");
-	SetScale(fPoint(70.f, 70.f));
+	SetScale(fPoint(86.f, 80.f));
 
 	CreateCollider();
-	GetCollider()->SetScale(fPoint(40.f, 40.f));
+	GetCollider()->SetScale(fPoint(20.f, 60.f));
 	GetCollider()->SetOffsetPos(fPoint(0.f, 10.f));
 
 	CreateAnimator();
-	GetAnimator()->CreateAnimation(L"LeftNone",		m_pTex, fPoint(0.f, 0.f),	fPoint(70.f, 70.f), fPoint(70.f, 0.f), 0.5f, 2);
-	GetAnimator()->CreateAnimation(L"RightNone",	m_pTex, fPoint(0.f, 70.f),	fPoint(70.f, 70.f), fPoint(70.f, 0.f), 0.5f, 2);
-	GetAnimator()->CreateAnimation(L"LeftMove",		m_pTex, fPoint(0.f, 140.f),	fPoint(70.f, 70.f), fPoint(70.f, 0.f), 0.25f, 3);
-	GetAnimator()->CreateAnimation(L"RightMove",	m_pTex, fPoint(0.f, 210.f), fPoint(70.f, 70.f), fPoint(70.f, 0.f), 0.25f, 3);
-	GetAnimator()->CreateAnimation(L"LeftHit",		m_pTex, fPoint(140.f, 0.f), fPoint(70.f, 70.f), fPoint(70.f, 0.f), 0.25f, 1);
-	GetAnimator()->CreateAnimation(L"RightHit",		m_pTex, fPoint(140.f, 70.f), fPoint(70.f, 70.f), fPoint(70.f, 0.f), 0.25f, 1);
+	GetAnimator()->CreateAnimation(L"LeftNone",		m_pTex, fPoint(0.f, 0.f),	fPoint(86.f, 80.f), fPoint(0.f, 0.f), 0.5f, 1);
+	GetAnimator()->CreateAnimation(L"RightNone",	m_pTex, fPoint(0.f, 86.f),	fPoint(86.f, 80.f), fPoint(70.f, 0.f), 0.5f, 2);
+	GetAnimator()->CreateAnimation(L"LeftMove",		m_pTex, fPoint(0.f, 86.f),	fPoint(86.f, 80.f), fPoint(86.f, 0.f), 0.25f, 3);
+	GetAnimator()->CreateAnimation(L"RightMove",	m_pTex, fPoint(0.f, 0.f), fPoint(86.f, 80.f), fPoint(86.f, 0.f), 0.25f, 5);
+	GetAnimator()->CreateAnimation(L"LeftHit",		m_pTex, fPoint(140.f, 0.f), fPoint(86.f, 80.f), fPoint(70.f, 0.f), 0.25f, 1);
+	GetAnimator()->CreateAnimation(L"RightHit",		m_pTex, fPoint(0.f, 172.f),fPoint(115.f, 100.f), fPoint(110.f, 0.f), 0.30f, 6);
 	GetAnimator()->Play(L"LeftNone");
+
+	// TODO : 캐릭터 주위에 보락색 테두리를 제거 해야함. 
+	// TODO : 방향키를 누를 시에 계속 걷는 모션이 반복되는데 키가 눌려있는 순간에만 걷는 모션이 되게 해야함. 
+	// TODO : space키를 누르면 미사일 발사 동시에 참격 액션을 취하는데 제대로 구현하지 못함.		
 
 	CAnimation* pAni;
 	pAni = GetAnimator()->FindAnimation(L"LeftMove");
-	pAni->GetFrame(1).fptOffset = fPoint(0.f, -20.f);
+	pAni->GetFrame(1).fptOffset = fPoint(0.f, 0.f);
 	pAni = GetAnimator()->FindAnimation(L"RightMove");
-	pAni->GetFrame(1).fptOffset = fPoint(0.f, -20.f);
+	pAni->GetFrame(1).fptOffset = fPoint(0.f, 0.f);
 }
 
 CPlayer::~CPlayer()
@@ -68,10 +72,12 @@ void CPlayer::update()
 
 	SetPos(pos);
 
+	//if (KeyDown(VK_))
+
 	if (KeyDown(VK_SPACE))
 	{
 		CreateMissile();
-		GetAnimator()->Play(L"LeftHit");
+		GetAnimator()->Play(L"RightHit");
 	}
 
 	GetAnimator()->update();

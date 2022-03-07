@@ -1,191 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="소스 파일">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="헤더 파일">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="리소스 파일">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Engine">
-      <UniqueIdentifier>{20a2999e-47e4-4349-841f-65ead5e51551}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Util">
-      <UniqueIdentifier>{22a54a9b-89ad-4787-9d42-6ad88d8c46fc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Core">
-      <UniqueIdentifier>{179e2537-7f8e-4919-afda-65ecb491d307}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object">
-      <UniqueIdentifier>{b1a15ec5-69e7-4a75-87d5-b05d9c732975}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Manager">
-      <UniqueIdentifier>{2ac80e1d-20a0-4a22-9771-b16bdbfb1cba}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scene">
-      <UniqueIdentifier>{8190a06a-a22a-4318-852a-c23c0e69ff9d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource">
-      <UniqueIdentifier>{0f3b1a25-3d29-42fc-b905-9df33557656c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource\Sound">
-      <UniqueIdentifier>{826f3f8d-374b-4c0a-be9c-de16d307b7b6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource\Texture">
-      <UniqueIdentifier>{5bc186af-ba25-4d4f-be50-058f2826435e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Component">
-      <UniqueIdentifier>{cbcef95c-8f0e-46a7-9fdc-c6f0fc375017}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Component\Collider">
-      <UniqueIdentifier>{74147606-9a3e-4a84-9af0-bade1f6582e3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Component\Animator">
-      <UniqueIdentifier>{d4946b32-3eb9-473e-9a76-f300b33936e9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Component\Animator\Animation">
-      <UniqueIdentifier>{c358a652-2bd1-4cab-9701-0ca2ea06e82a}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="framework.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Resource.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="winAPI_2D_imitation.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="SingleTon.h">
-      <Filter>Util</Filter>
-    </ClInclude>
-    <ClInclude Include="CCore.h">
-      <Filter>Engine\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="struct.h">
-      <Filter>Util</Filter>
-    </ClInclude>
-    <ClInclude Include="CGameObject.h">
-      <Filter>Object</Filter>
-    </ClInclude>
-    <ClInclude Include="CTimeManager.h">
-      <Filter>Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="CKeyManager.h">
-      <Filter>Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="CScene.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="CSceneManager.h">
-      <Filter>Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="CScene_Start.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="CPlayer.h">
-      <Filter>Object</Filter>
-    </ClInclude>
-    <ClInclude Include="CMonster.h">
-      <Filter>Object</Filter>
-    </ClInclude>
-    <ClInclude Include="CMissile.h">
-      <Filter>Object</Filter>
-    </ClInclude>
-    <ClInclude Include="CPathManager.h">
-      <Filter>Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="CResource.h">
-      <Filter>Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="CTexture.h">
-      <Filter>Resource\Texture</Filter>
-    </ClInclude>
-    <ClInclude Include="CResourceManager.h">
-      <Filter>Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="CCollider.h">
-      <Filter>Component\Collider</Filter>
-    </ClInclude>
-    <ClInclude Include="SelectGDI.h">
-      <Filter>Util</Filter>
-    </ClInclude>
-    <ClInclude Include="CCollisionManager.h">
-      <Filter>Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="CEventManager.h">
-      <Filter>Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="CAnimator.h">
-      <Filter>Component\Animator</Filter>
-    </ClInclude>
-    <ClInclude Include="CAnimation.h">
+    <ClCompile Include="CAnimation.cpp">
       <Filter>Component\Animator\Animation</Filter>
-    </ClInclude>
-    <ClInclude Include="CCameraManager.h">
-      <Filter>Manager</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="winAPI_2D_imitation.cpp">
-      <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="CCore.cpp">
-      <Filter>Engine\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="CTimeManager.cpp">
-      <Filter>Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="CGameObject.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
-    <ClCompile Include="CKeyManager.cpp">
-      <Filter>Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="CScene.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="CSceneManager.cpp">
-      <Filter>Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="CScene_Start.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="CPlayer.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
-    <ClCompile Include="CMonster.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
-    <ClCompile Include="CMissile.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
-    <ClCompile Include="CPathManager.cpp">
-      <Filter>Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="CResource.cpp">
-      <Filter>Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="CTexture.cpp">
-      <Filter>Resource\Texture</Filter>
-    </ClCompile>
-    <ClCompile Include="CResourceManager.cpp">
-      <Filter>Manager</Filter>
+    <ClCompile Include="CAnimator.cpp">
+      <Filter>Component\Animator</Filter>
     </ClCompile>
     <ClCompile Include="CCollider.cpp">
-      <Filter>Component\Collider</Filter>
+      <Filter>Collider</Filter>
     </ClCompile>
-    <ClCompile Include="CCollisionManager.cpp">
+    <ClCompile Include="CCore.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="CCameraManager.cpp">
       <Filter>Manager</Filter>
     </ClCompile>
     <ClCompile Include="CCollisionManager.cpp">
@@ -194,20 +22,131 @@
     <ClCompile Include="CEventManager.cpp">
       <Filter>Manager</Filter>
     </ClCompile>
-    <ClCompile Include="CAnimator.cpp">
-      <Filter>Component\Animator</Filter>
-    </ClCompile>
-    <ClCompile Include="CAnimation.cpp">
-      <Filter>Component\Animator\Animation</Filter>
-    </ClCompile>
-    <ClCompile Include="CCameraManager.cpp">
+    <ClCompile Include="CPathManager.cpp">
       <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CKeyManager.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CResourceManager.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CSceneManager.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CTimeManager.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CGameObject.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CMissile.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CMonster.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayer.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CTexture.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="CResource.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="CScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CScene_Start.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="winAPI_2D_imitation.cpp">
+      <Filter>소스파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="winAPI_2D_imitation.rc">
-      <Filter>리소스 파일</Filter>
-    </ResourceCompile>
+    <ClInclude Include="CAnimation.h">
+      <Filter>Component\Animator\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="CAnimator.h">
+      <Filter>Component\Animator</Filter>
+    </ClInclude>
+    <ClInclude Include="CCollider.h">
+      <Filter>Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="CCore.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="CCameraManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CCollisionManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CEventManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CPathManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CKeyManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CResourceManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CSceneManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CTimeManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CGameObject.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="CMissile.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="CMonster.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayer.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="CTexture.h">
+      <Filter>Resource\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="CResource.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="CScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CScene_Start.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SingleTon.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectGDI.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="struct.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="winAPI_2D_imitation.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="small.ico">
@@ -216,5 +155,57 @@
     <Image Include="winAPI_2D_imitation.ico">
       <Filter>리소스 파일</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Component">
+      <UniqueIdentifier>{7399f4dd-4224-488d-9332-825b3925d3dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Animator">
+      <UniqueIdentifier>{de67646c-fbd3-48eb-9884-f5cda8842f87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Animator\Animation">
+      <UniqueIdentifier>{ab8fe087-5af5-4045-bd05-73804b272a53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Collider">
+      <UniqueIdentifier>{4731a3f5-8e3c-4827-aea7-4af27f05d7c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{2343ee0a-6372-417c-8c27-689d7d67cec8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager">
+      <UniqueIdentifier>{ec5e788d-8aa6-46aa-a170-adaffd03d7ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{799d20c4-baf3-4cbb-b513-f8d589c54d93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{98473e3d-c1f5-4f71-befe-a40d674ae862}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Sound">
+      <UniqueIdentifier>{874efa51-bce2-46c3-a60b-10247248e424}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Texture">
+      <UniqueIdentifier>{4e2563de-5415-439b-8126-af2541231e92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{577746ce-0355-4f6e-a046-4ef1843eb8d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Util">
+      <UniqueIdentifier>{49fc35f9-39e8-4c3c-816f-2c19040f17ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스파일">
+      <UniqueIdentifier>{a651be70-68cc-4eec-86ad-a07aee1101e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{1bb55072-9a35-49df-866e-efe780814c7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{484df266-aedf-4ada-8f81-63ea8e03de43}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="winAPI_2D_imitation.rc">
+      <Filter>리소스 파일</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>
