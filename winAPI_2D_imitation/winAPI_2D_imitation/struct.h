@@ -35,6 +35,13 @@ struct fPoint
 	{
 		return fPoint(x + other.x, y + other.y);
 	}
+	
+	fPoint& operator+=(const fPoint& other)
+	{
+		this->x += other.x;
+		this->y += other.y;
+		return *this;
+	}
 
 	fPoint operator-(const fPoint& other)
 	{

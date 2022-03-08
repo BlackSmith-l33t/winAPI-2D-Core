@@ -22,6 +22,7 @@
 // STL
 #include <vector>
 #include <map>
+#include <list>
 
 using namespace std;
 
@@ -44,6 +45,7 @@ enum class GROUP_GAMEOBJ
 	MISSILE_PLAYER,
 	MISSILE_MONSTER,
 
+	UI,
 	SIZE,
 };
 
@@ -100,6 +102,7 @@ enum class TYPE_EVENT
 #include "CEventManager.h"
 #include "CResourceManager.h"
 #include "CCameraManager.h"
+#include "CUIManager.h"
 
 //========================================
 //##			디파인문				##

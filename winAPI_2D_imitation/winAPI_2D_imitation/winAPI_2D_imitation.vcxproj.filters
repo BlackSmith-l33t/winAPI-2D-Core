@@ -52,6 +52,12 @@
     <Filter Include="Component\Animator\Animation">
       <UniqueIdentifier>{c358a652-2bd1-4cab-9701-0ca2ea06e82a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\UI">
+      <UniqueIdentifier>{5a7ffbb4-e4b4-440c-93b4-001b976c5552}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Tile">
+      <UniqueIdentifier>{ac85e8eb-8677-4336-a2d8-146598dbf91d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -135,11 +141,26 @@
     <ClInclude Include="CCameraManager.h">
       <Filter>Manager</Filter>
     </ClInclude>
-    <ClInclude Include="CTile.h">
-      <Filter>Object</Filter>
-    </ClInclude>
     <ClInclude Include="CScene_Tool.h">
       <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Logger.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="CTile.h">
+      <Filter>Object\Tile</Filter>
+    </ClInclude>
+    <ClInclude Include="CUI.h">
+      <Filter>Object\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="CUIManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CButtonUI.h">
+      <Filter>Object\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="CPanelUI.h">
+      <Filter>Object\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -209,11 +230,23 @@
     <ClCompile Include="CCameraManager.cpp">
       <Filter>Manager</Filter>
     </ClCompile>
-    <ClCompile Include="CTile.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
     <ClCompile Include="CScene_Tool.cpp">
       <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CTile.cpp">
+      <Filter>Object\Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="CUI.cpp">
+      <Filter>Object\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="CUIManager.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CButtonUI.cpp">
+      <Filter>Object\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="CPanelUI.cpp">
+      <Filter>Object\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
