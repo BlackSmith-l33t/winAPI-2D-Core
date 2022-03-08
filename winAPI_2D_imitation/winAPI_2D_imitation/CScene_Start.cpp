@@ -17,7 +17,7 @@ void CScene_Start::update()
 {
 	CScene::update();
 
-	if (KeyDown(VK_ESCAPE))
+	if (KeyDown(VK_TAB))
 	{
 		ChangeScn(GROUP_SCENE::TOOL);
 	}
@@ -31,12 +31,17 @@ void CScene_Start::update()
 
 void CScene_Start::Enter()
 {
+	// 타일 로딩
+	/*wstring path = CPathManager::getInst()->GetContentPath();
+	path += L"tile\\Start.tile";
+	LoadTile(path);*/
+
 	// Player 추가
 	CGameObject* pPlayer = new CPlayer;
 	pPlayer->SetPos(fPoint(200, 200));
 	AddObject(pPlayer, GROUP_GAMEOBJ::PLAYER);
 
-	// Monster 추가
+	// Monster 추가	
 	CMonster* pMonster = new CMonster;
 	pMonster->SetPos(fPoint(1100, 350));
 	pMonster->SetCenterPos(pMonster->GetPos());

@@ -167,7 +167,9 @@
     <ClInclude Include="CScene.h" />
     <ClInclude Include="CSceneManager.h" />
     <ClInclude Include="CScene_Start.h" />
+    <ClInclude Include="CScene_Tool.h" />
     <ClInclude Include="CTexture.h" />
+    <ClInclude Include="CTile.h" />
     <ClInclude Include="CTimeManager.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Resource.h" />
@@ -196,7 +198,9 @@
     <ClCompile Include="CScene.cpp" />
     <ClCompile Include="CSceneManager.cpp" />
     <ClCompile Include="CScene_Start.cpp" />
+    <ClCompile Include="CScene_Tool.cpp" />
     <ClCompile Include="CTexture.cpp" />
+    <ClCompile Include="CTile.cpp" />
     <ClCompile Include="CTimeManager.cpp" />
     <ClCompile Include="winAPI_2D_imitation.cpp" />
   </ItemGroup>
