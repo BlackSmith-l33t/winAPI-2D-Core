@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "CResourceManager.h"
 #include "CTexture.h"
+#include "CSound.h"
 
 CResourceManager::CResourceManager()
 {
@@ -18,6 +19,11 @@ CResourceManager::~CResourceManager()
 		}
 	}
 	m_mapTex.clear();
+
+	for (map<wstring, CSound*>::iterator iter = m_mapSound.begin(); iter != m_mapSound.end(); iter++)
+	{
+		// TODO : 삭제 진행
+	}
 }
 
 CTexture* CResourceManager::FindTexture(const wstring& strKey)
@@ -55,4 +61,40 @@ CTexture* CResourceManager::LoadTextrue(const wstring& strKey, const wstring& st
 	m_mapTex.insert(make_pair(strKey, pTex));
 	
 	return pTex;
+}
+
+CSound* CResourceManager::FindSound(const wstring& strKey)
+{
+	map<wstring, CSound*>::iterator iter = m_mapSound.find(strKey);
+
+	if (m_mapSound.end() == iter)
+	{
+		return nullptr;
+	}
+
+	return iter->second;
+}
+
+CSound* CResourceManager::LoadSound(const wstring& strKey, const wstring& strRelativePath)
+{
+	// Texture를 불러오기 전 자료구조에 이미 Texture가 있는지 확인
+	CSound* pSound = FindSound(strKey);
+	if (nullptr != pSound)
+	{
+		return pSound;
+	}
+
+	// Texture 저장 경로 확인
+	wstring strFilePath = CPathManager::getInst()->GetContentRelativePath();
+	strFilePath += strRelativePath;
+
+	// Texture 생성 후 저장
+	pSound = new CSound;
+	pSound->Load(strFilePath);
+	pSound->SetKey(strKey);
+	pSound->SetRelativePath(strRelativePath);
+
+	m_mapSound.insert(make_pair(strKey, pSound));
+
+	return pSound;
 }

@@ -4,6 +4,7 @@
 #include "CGameObject.h"
 #include "CPlayer.h"
 #include "CMonster.h"
+#include "CSound.h"
 
 CScene_Start::CScene_Start()
 {
@@ -12,6 +13,8 @@ CScene_Start::CScene_Start()
 CScene_Start::~CScene_Start()
 {
 }
+
+CSound* pSound;
 
 void CScene_Start::update()
 {
@@ -27,6 +30,17 @@ void CScene_Start::update()
 		fPoint fptLookAt = CCameraManager::getInst()->GetRealPos(MousePos());
 		CCameraManager::getInst()->SetLookAt(fptLookAt);
 	}
+
+	if (KeyDown('Z'))
+	{	
+		CSoundManager::getInst()->AddSound(L"coin", L"sound\\Coins.wav", false);
+	}
+	
+	if (KeyDown('X'))
+	{		
+		CSoundManager::getInst()->Play(L"coin");
+	}
+
 }
 
 void CScene_Start::Enter()
@@ -53,6 +67,8 @@ void CScene_Start::Enter()
 	// Camera Look ÁöÁ¤
 	CCameraManager::getInst()->SetLookAt(fPoint(WINSIZEX / 2.f, WINSIZEY / 2.f));
 	//CCameraManager::getInst()->SetTargetObj(pPlayer);
+
+	//CSoundManager::getInst()->AddSound(L"coin", L"sound\\Coins.wav", false);
 }
 
 void CScene_Start::Exit()

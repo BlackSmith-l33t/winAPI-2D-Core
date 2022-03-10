@@ -5,7 +5,7 @@
 
 CUIManager::CUIManager()
 {
-
+	m_pFoucedUI = nullptr;
 }
 
 CUIManager::~CUIManager()

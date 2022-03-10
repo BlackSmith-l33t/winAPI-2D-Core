@@ -3,6 +3,7 @@
 
 #include "framework.h"
 #include "winAPI_2D_imitation.h"
+#include <locale.h>
 
 #define MAX_LOADSTRING 100
 
@@ -33,6 +34,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_ LPWSTR    lpCmdLine,
                      _In_ int       nCmdShow)
 {
+    setlocale(LC_ALL, "");
     // 사용되지 않은 매개변수 정의
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
