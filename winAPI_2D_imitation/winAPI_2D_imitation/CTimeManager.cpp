@@ -37,7 +37,7 @@ void CTimeManager::update()
 	}
 }
 
-void CTimeManager::Init()
+void CTimeManager::init()
 {
 	QueryPerformanceCounter(&m_llPrevCount);
 	QueryPerformanceFrequency(&m_llFrequency);

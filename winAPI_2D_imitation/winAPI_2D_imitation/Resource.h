@@ -8,19 +8,18 @@
 #define IDD_ABOUTBOX                    103
 #define IDM_ABOUT                       104
 #define IDM_EXIT                        105
+#define IDD_TILEBOX                     105
 #define IDI_WINAPI2D                    107
 #define IDI_SMALL                       108
 #define IDC_WINAPI2D                    109
 #define IDR_MAINFRAME                   128
-#define IDD_TILEBOX                     129
-#define IDC_BUTTON_SIZE                 1000
+#define IDC_EDIT_SIZEX                  1000
 #define IDC_EDIT_SIZEY                  1001
-#define IDC_EDIT_SIZEX                  1002
-#define IDC_EDIT_TILE                   1004
-#define IDC_BUTTON1                     1005
-#define IDC_BUTTON_TILE                 1005
-#define IDC_EDIT3                       1008
-#define IDM_TILE                        32774
+#define IDC_EDIT_TILE                   1002
+#define IDC_BUTTON_SIZE                 1003
+#define IDC_BUTTON_TILE                 1004
+#define ID_                             1005
+#define ID_LOADING                      1005
 #define ID_ACCELERATOR32776             32776
 #define IDC_STATIC                      -1
 
@@ -29,9 +28,9 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NO_MFC                     1
-#define _APS_NEXT_RESOURCE_VALUE        131
-#define _APS_NEXT_COMMAND_VALUE         32776
-#define _APS_NEXT_CONTROL_VALUE         1007
+#define _APS_NEXT_RESOURCE_VALUE        130
+#define _APS_NEXT_COMMAND_VALUE         32772
+#define _APS_NEXT_CONTROL_VALUE         1006
 #define _APS_NEXT_SYMED_VALUE           110
 #endif
 #endif

@@ -41,7 +41,6 @@ enum class GROUP_GAMEOBJ
 	DEFAULT,
 	TILE,
 	PLAYER,
-	BALL,
 	MONSTER,
 	MISSILE_PLAYER,
 	MISSILE_MONSTER,
@@ -109,8 +108,8 @@ enum class TYPE_EVENT
 //##			디파인문				##
 //========================================
 
-#define WINSTARTX   100
-#define WINSTARTY   100
+#define WINSTARTX   330
+#define WINSTARTY   150
 #define WINSIZEX	1280
 #define	WINSIZEY	720
 #define WINSTYLE	WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX

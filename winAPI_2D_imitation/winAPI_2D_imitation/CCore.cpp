@@ -41,7 +41,6 @@ void CCore::update()
 void CCore::render()
 {
 	Rectangle(m_hMemDC, -1, -1, WINSIZEX + 1, WINSIZEY + 1);
-	//Ellipse(m_hMemDC, -1, -1, WINSIZEX + 1, WINSIZEY + 1);
 
 	CSceneManager::getInst()->render(m_hMemDC);
 

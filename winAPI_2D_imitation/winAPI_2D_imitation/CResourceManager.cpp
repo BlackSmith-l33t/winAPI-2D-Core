@@ -24,7 +24,7 @@ CTexture* CResourceManager::FindTexture(const wstring& strKey)
 {
 	// Texture 키 값을 통해 탐색
 	map<wstring, CTexture*>::iterator iter = m_mapTex.find(strKey);
-
+	
 	if (m_mapTex.end() == iter)
 	{
 		return nullptr;
@@ -41,7 +41,7 @@ CTexture* CResourceManager::LoadTextrue(const wstring& strKey, const wstring& st
 	{
 		return pTex;
 	}
-
+	
 	// Texture 저장 경로 확인
 	wstring strFilePath = CPathManager::getInst()->GetContentPath();
 	strFilePath += strRelativePath;
@@ -53,6 +53,6 @@ CTexture* CResourceManager::LoadTextrue(const wstring& strKey, const wstring& st
 	pTex->SetRelativePath(strRelativePath);
 
 	m_mapTex.insert(make_pair(strKey, pTex));
-
+	
 	return pTex;
 }

@@ -14,12 +14,12 @@ CGameObject::CGameObject()
 
 CGameObject::CGameObject(const CGameObject& other)
 {
-	m_strName = other.m_strName;
-	m_fptPos = other.m_fptPos;
-	m_fptScale = other.m_fptScale;
+	m_strName	= other.m_strName;
+	m_fptPos	= other.m_fptPos;
+	m_fptScale	= other.m_fptScale;
 	m_pCollider = nullptr;
 	m_pAnimator = nullptr;
-	m_bAlive = true;
+	m_bAlive	= true;
 
 	if (nullptr != other.m_pCollider)
 	{

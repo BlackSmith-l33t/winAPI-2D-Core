@@ -217,7 +217,7 @@ INT_PTR CALLBACK TileWinProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPar
 
 			return (INT_PTR)TRUE;
 		}
-		else if (LOWORD(wParam) == IDCANCEL)
+		else if (LOWORD(wParam) == ID_LOADING)
 		{
 			CScene* pCurScene = CSceneManager::getInst()->GetCurScene();
 
@@ -263,8 +263,8 @@ INT_PTR CALLBACK TileWinProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPar
 
 			// 임시로 이미지 출력
 			BitBlt(GetDC(hDlg),
-				(int)(150),
-				(int)(150),
+				(int)(100),
+				(int)(180),
 				(int)(CTile::SIZE_TILE),
 				(int)(CTile::SIZE_TILE),
 				pTex->GetDC(),
@@ -273,6 +273,10 @@ INT_PTR CALLBACK TileWinProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPar
 				SRCCOPY);
 
 			pToolScene->SetIdx(m_iIdx);
+		}		
+		else if (LOWORD(wParam) == IDCANCEL)
+		{
+			DestroyWindow(hDlg);
 		}
 		break;
 	}
