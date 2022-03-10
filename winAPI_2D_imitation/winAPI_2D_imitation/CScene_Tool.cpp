@@ -65,27 +65,47 @@ void CScene_Tool::Enter()
 	m_hWnd = CreateDialog(hInst, MAKEINTRESOURCE(IDD_TILEBOX), hWnd, TileWinProc);
 	ShowWindow(m_hWnd, SW_SHOW);
 
-	// UI 생성
+	// UI 생성	
 	CUI* pPanelUI = new CPanelUI();
-	pPanelUI->SetScale(fPoint(200.f, 80.f));
-	pPanelUI->SetPos(fPoint(WINSIZEX - pPanelUI->GetScale().x, 0.f));		// UI는 카메라의 위치와 상관없이 절대 좌표를 통해 구현
+	pPanelUI->SetScale(fPoint(300.f, 350.f));
+	pPanelUI->SetPos(fPoint(860, 176.f));		// UI는 카메라의 위치와 상관없이 절대 좌표를 통해 구현
 	AddObject(pPanelUI, GROUP_GAMEOBJ::UI);
 
-	CUI* pButtonUI = new CButtonUI();
-	pButtonUI->SetScale(fPoint(100.f, 40.f));
-	pButtonUI->SetPos(fPoint(10.f, 10.f));
-	pPanelUI->AddChild(pButtonUI);
+	CUI* pButtonUI_Exit = new CButtonUI();
+	pButtonUI_Exit->SetScale(fPoint(20.f, 20.f));
+	pButtonUI_Exit->SetPos(fPoint(270.f, 10.f));
+	pPanelUI->AddChild(pButtonUI_Exit);
 
-	// UI 복사
-	CUI* pClonePanel = pPanelUI->Clone();
-	pClonePanel->SetPos(pClonePanel->GetPos() + fPoint(-500.f, 0.f));
-	AddObject(pClonePanel, GROUP_GAMEOBJ::UI);
+	CUI* pPanelUI_Inside = new CPanelUI();
+	pPanelUI_Inside->SetScale(fPoint(200.f, 200.f));
+	pPanelUI_Inside->SetPos(fPoint(pPanelUI->GetCenterPos().x - pPanelUI_Inside->GetScale().x / 2, pPanelUI->GetCenterPos().y - pPanelUI_Inside->GetScale().y / 2));
+	pPanelUI->AddChild(pPanelUI_Inside);
 
-	CButtonUI* pBtnUI = new CButtonUI;
-	pBtnUI->SetScale(fPoint(30.f, 50.f));
-	pBtnUI->SetPos(fPoint(150.f, 10.f));
-	pBtnUI->SetClickedCallBack(ChangeScene, 0, 0);	// 추가 정보가 필요로 하지 않는 동작
-	AddObject(pBtnUI, GROUP_GAMEOBJ::UI);
+	CUI* pButtonUI_01 = new CButtonUI();
+	pButtonUI_01->SetScale(fPoint(80.f, 40.f));
+	pButtonUI_01->SetPos(fPoint(10.f, 120.f));
+	pPanelUI_Inside->AddChild(pButtonUI_01);
+
+	CUI* pButtonUI_02 = new CButtonUI();
+	pButtonUI_02->SetScale(fPoint(80.f, 40.f));
+	pButtonUI_02->SetPos(fPoint(110.f, 120.f));
+	pPanelUI_Inside->AddChild(pButtonUI_02);
+
+	CUI* pButtonUI_Ok = new CButtonUI();
+	pButtonUI_Ok->SetScale(fPoint(100.f, 40.f));
+	pButtonUI_Ok->SetPos(fPoint(pPanelUI->GetCenterPos().x - pButtonUI_Ok->GetScale().x / 2, 300.f));
+	pPanelUI->AddChild(pButtonUI_Ok);
+
+	//// UI 복사
+	//CUI* pClonePanel = pPanelUI->Clone();
+	//pClonePanel->SetPos(pClonePanel->GetPos() + fPoint(-500.f, 0.f));
+	//AddObject(pClonePanel, GROUP_GAMEOBJ::UI);
+
+	//CButtonUI* pBtnUI = new CButtonUI;
+	//pBtnUI->SetScale(fPoint(30.f, 50.f));
+	//pBtnUI->SetPos(fPoint(150.f, 10.f));
+	//pBtnUI->SetClickedCallBack(ChangeScene, 0, 0);	// 추가 정보가 필요로 하지 않는 동작
+	//AddObject(pBtnUI, GROUP_GAMEOBJ::UI);
 	//pPanelUI->AddChild(pBtnUI);
 }
 
@@ -273,7 +293,7 @@ INT_PTR CALLBACK TileWinProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPar
 				SRCCOPY);
 
 			pToolScene->SetIdx(m_iIdx);
-		}		
+		}
 		else if (LOWORD(wParam) == IDCANCEL)
 		{
 			DestroyWindow(hDlg);

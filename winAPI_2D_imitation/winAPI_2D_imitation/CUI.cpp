@@ -174,6 +174,14 @@ const vector<CUI*>& CUI::GetChildUI()
 	return m_vecChildUI;
 }
 
+fPoint CUI::GetCenterPos()
+{
+	m_centerPos.x = GetScale().x / 2.f;
+	m_centerPos.y = GetScale().y / 2.f;
+
+	return m_centerPos;
+}
+
 void CUI::MouseOnCheck()
 {
 	fPoint fptMousePos = MousePos();

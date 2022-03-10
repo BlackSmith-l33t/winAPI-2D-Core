@@ -1,5 +1,7 @@
 #include "framework.h"
 #include "CButtonUI.h"
+#include "CScene_Tool.h"
+#include "CTexture.h"
 
 CButtonUI::CButtonUI()
 	: CUI(false)
@@ -20,6 +22,27 @@ CButtonUI* CButtonUI::Clone()
 
 void CButtonUI::MouseOn()
 {
+	CScene* pCurScene = CSceneManager::getInst()->GetCurScene();
+
+	CScene_Tool* pToolScene = dynamic_cast<CScene_Tool*>(pCurScene);
+	assert(pToolScene);
+
+	CTexture* pTex = CResourceManager::getInst()->FindTexture(L"Exit_Button");
+
+	UINT iWidth = pTex->GetBmpWidth();
+	UINT iHeight = pTex->GetBmpHeight();
+
+	BitBlt(pTex->GetDC(),
+		(int)(100),
+		(int)(180),
+		(int)(20),
+		(int)(20),
+		pTex->GetDC(),
+		(int)(pTex->GetBmpWidth()),
+		(int)(pTex->GetBmpHeight()),
+		SRCCOPY);
+
+	// TODO : 0310 버튼 색깔 바꾸기 시도 중 
 }
 
 void CButtonUI::MouseLbtnDown()
@@ -28,6 +51,7 @@ void CButtonUI::MouseLbtnDown()
 
 void CButtonUI::MouseLbtnUp()
 {
+
 }
 
 void CButtonUI::MouseLbtnClicked()

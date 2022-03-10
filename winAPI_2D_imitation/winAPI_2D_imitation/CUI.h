@@ -9,6 +9,7 @@ private:
 	CUI* m_pParentUI;
 
 	fPoint m_fptFinalPos;
+	fPoint m_centerPos;
 
 	bool m_bCameraAffected;
 	bool m_bMouseOn;
@@ -43,6 +44,8 @@ public:
 	CUI* GetParent();
 	void AddChild(CUI* pUI);
 	const vector<CUI*>& GetChildUI();
+
+	fPoint GetCenterPos();
 
 private:
 	void MouseOnCheck();
