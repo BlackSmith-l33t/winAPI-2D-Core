@@ -1,18 +1,25 @@
 #pragma once
+
 class CScene;
 
 class CSceneManager
 {
 	SINGLETON(CSceneManager);
+	
+	friend class CEventManager;
 
 private:
-	CScene* m_arrScene[(int)GROUP_SCENE::SIZE];
-	CScene* m_pCurrScene;
-public:
-	void changeScene(GROUP_SCENE group);
+	CScene* m_arrScene[(int)GROUP_SCENE::SIZE];		// ÀüÃ¼ ¾À ¸ñ·Ï
+	CScene* m_pCurScene;							// ÇöÀç ¾À
 
-	void Update();
-	void Init();
-	void Render(HDC hDC);
+	void ChangeScene(GROUP_SCENE scene);			// ¾À ÀüÈ¯
+	
+
+public:
+	void update();
+	void render(HDC hDC);
+	void init();
+
+	CScene* GetCurScene();							//ÇöÀç ¾À ¹ÝÈ¯
 };
 

@@ -37,12 +37,12 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
 
-    // TODO: 여기에 코드를 입력합니다.
+    // TODO: 메모리 누수 체크 추가 할 것.
 
     // 리소스 뷰의 String table 용도
     // 전역 문자열을 초기화합니다.
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
-    LoadStringW(hInstance, IDC_WINAPI2DIMITATION, szWindowClass, MAX_LOADSTRING);
+    LoadStringW(hInstance, IDI_WINAPI2D, szWindowClass, MAX_LOADSTRING);
     MyRegisterClass(hInstance);
 
     // 애플리케이션 초기화를 수행합니다:
@@ -52,7 +52,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     }
 
     // 단축키 정보
-    HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_WINAPI2DIMITATION));
+    HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDI_WINAPI2D));
 
     // 기본 메시지 루프입니다:
     // 메세지 큐에서 메세지가 확인될 때까지 대기
@@ -113,7 +113,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.cbClsExtra = 0;                        // 윈도우 클래스에서 사용하고자 하는 여분의 메모리양을 바이트 단위로 지정
     wcex.cbWndExtra = 0;                        // cbClsExtra와 유사하나 개별 윈도우에서 사용하고자 하는 여분의 메모리양을 지정
     wcex.hInstance = hInstance;                // 윈도우 클래스를 등록한 인스턴스의 핸들
-    wcex.hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(IDC_WINAPI2DIMITATION));   // 프로그램 아이콘
+    wcex.hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_WINAPI2D));   // 프로그램 아이콘
     wcex.hIconSm = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL)); // 타이틀바 좌상단과 윈도우가 최소화 되었을 때 보여주는 아이콘을 지정
     wcex.hCursor = LoadCursor(nullptr, IDC_ARROW);   // 커서 지정
     wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW);         // 윈도우 작업영역에 칠한 배경 브러시
@@ -216,7 +216,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             PAINTSTRUCT ps;
             // Device Context 만들어서 ID 를 반환
             HDC hdc = BeginPaint(hWnd, &ps);
-            // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...            
+            // 여기에 hdc를 사용하는 그리기 코드를 추가합니다.            
             EndPaint(hWnd, &ps);
         }
         break;

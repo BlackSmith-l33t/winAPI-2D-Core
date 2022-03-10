@@ -4,6 +4,8 @@
 
 #pragma once
 
+#pragma comment(lib, "Msimg32.lib")
+
 #include "targetver.h"
 #define WIN32_LEAN_AND_MEAN             // 거의 사용되지 않는 내용을 Windows 헤더에서 제외합니다.
 // Windows 헤더 파일
@@ -14,14 +16,40 @@
 #include <memory.h>
 #include <tchar.h>
 #include <string>
-using std::string;
-using std::wstring;
+#include <math.h>
+#include <assert.h>
 
-//STL
+// STL
 #include <vector>
-using std::vector;
+#include <map>
+#include <list>
 
-// 씬 그룹
+using namespace std;
+
+// Util
+#include "SingleTon.h"
+#include "struct.h"
+#include "Logger.h"
+
+
+//========================================
+//## 게임 그룹						##
+//========================================
+
+enum class GROUP_GAMEOBJ
+{
+	DEFAULT,
+	TILE,
+	PLAYER,
+	BALL,
+	MONSTER,
+	MISSILE_PLAYER,
+	MISSILE_MONSTER,
+
+	UI,
+	SIZE,
+};
+
 enum class GROUP_SCENE
 {
 	TOOL,
@@ -32,47 +60,77 @@ enum class GROUP_SCENE
 	SIZE,
 };
 
-// 오브젝트 그룹
-enum class GROUP_GAMEOBJ
+//========================================
+//## Core DC의 GDI					##
+//========================================
+
+enum class TYPE_BRUSH
 {
-	DEFAULT,
-	BRICK_BREAKER, // 지금 만들고 있는 게임을 한 그룹으로 분류
-	PLAYER,
-	BALL,
-	MONSTER,
-	MISSILE,
+	HOLLOW,
 
 	SIZE,
 };
 
-// Util
-#include "SingleTon.h"
-#include "struct.h"
+enum class TYPE_PEN
+{
+	RED,
+	GREEN,
+	BLUE,
+
+	SIZE,
+};
+
+//========================================
+//## 이벤트 타입					##
+//========================================
+
+enum class TYPE_EVENT
+{
+	CREATE_OBJECT,
+	DELETE_OBJECT,
+	CHANGE_SCENE,
+
+	SIZE,
+};
+
+// Core & Manager
 #include "CCore.h"
 #include "CTimeManager.h"
 #include "CKeyManager.h"
 #include "CSceneManager.h"
+#include "CPathManager.h"
+#include "CCollisionManager.h"
+#include "CEventManager.h"
+#include "CResourceManager.h"
+#include "CCameraManager.h"
+#include "CUIManager.h"
 
-// 디파인문
+//========================================
+//##			디파인문				##
+//========================================
 
-#define WINSTARTX	300
-#define WINSTARTY	150
+#define WINSTARTX   100
+#define WINSTARTY   100
 #define WINSIZEX	1280
-#define WINSIZEY	720
+#define	WINSIZEY	720
 #define WINSTYLE	WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX
 
+#define DT				CTimeManager::getInst()->GetDT()
+#define fDT				CTimeManager::getInst()->GetfDT()
 
-#define DT					CTimeManager::getInst()->GetDT();
-#define KEY(vk_key)			CKeyManager::getInst()->GetButton(vk_key)
-#define KEYDOWN(vk_key)		CKeyManager::getInst()->GetButtonDown(vk_key)
-#define KEYUP(vk_key)		CKeyManager::getInst()->GetButtonUp(vk_key)
+#define Key(key)		CKeyManager::getInst()->GetButton(key)
+#define KeyUP(key)		CKeyManager::getInst()->GetButtonUP(key)
+#define KeyDown(key)	CKeyManager::getInst()->GetButtonDOWN(key)
 
-#define BALL_RADIUS 15
-#define VAUSX 150
-#define VAUSY 25
+#define MousePos()		CKeyManager::getInst()->GetMousePos()
 
+#define CreateObj(pObj, group)	CEventManager::getInst()->EventCreateObject(pObj, group)
+#define DeleteObj(pObj)			CEventManager::getInst()->EventDeleteObject(pObj)
+#define ChangeScn(scene)		CEventManager::getInst()->EventChangeScene(scene)
 
-// 전역 변수 : 인스턴스, 윈도우 핸들
+//========================================
+//## 전역변수(인스턴스, 윈도우 핸들)	##
+//========================================
+
 extern HINSTANCE hInst;
 extern HWND hWnd;
-

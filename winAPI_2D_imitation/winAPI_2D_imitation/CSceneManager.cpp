@@ -1,21 +1,22 @@
 #include "framework.h"
 #include "CSceneManager.h"
-#include "framework.h"
-#include "CSceneManager.h"
+
 #include "CScene_Start.h"
-#include "CScene_Stage_01.h"
+#include "CScene_Tool.h"
 
 CSceneManager::CSceneManager()
 {
+	// 씬 목록 초기화
 	for (int i = 0; i < (int)GROUP_SCENE::SIZE; i++)
 	{
 		m_arrScene[i] = nullptr;
 	}
-	m_pCurrScene = nullptr;
+	m_pCurScene = nullptr;
 }
 
 CSceneManager::~CSceneManager()
 {
+	// 씬 목록 삭제
 	for (int i = 0; i < (int)GROUP_SCENE::SIZE; i++)
 	{
 		if (nullptr != m_arrScene[i])
@@ -25,46 +26,37 @@ CSceneManager::~CSceneManager()
 	}
 }
 
-void CSceneManager::changeScene(GROUP_SCENE group)
+void CSceneManager::ChangeScene(GROUP_SCENE scene)
 {
-	if (m_arrScene[(int)group] == m_pCurrScene)
-	{
-		return;
-	}
-
-	m_pCurrScene->Exit();
-	m_pCurrScene = m_arrScene[(int)group];
-	m_pCurrScene->Enter();
+	m_pCurScene->Exit();
+	m_pCurScene = m_arrScene[(UINT)scene];
+	m_pCurScene->Enter();
 }
 
-void CSceneManager::Update()
+void CSceneManager::update()
 {
-	if (KEYDOWN(VK_SPACE))
-	{
-		changeScene(GROUP_SCENE::STAGE_01);
-	}
-	else if (KEYDOWN(VK_ESCAPE))
-	{
-		// TODO : 게임 화면에서 ESC 를 누르면 오류 발생. 원인은 아직 찾기 못했음.
-		changeScene(GROUP_SCENE::START);
-	}
-	m_pCurrScene->Update();
+	m_pCurScene->update();
+	m_pCurScene->finalupdate();
 }
 
-void CSceneManager::Render(HDC hDC)
+void CSceneManager::render(HDC hDC)
 {
-	m_pCurrScene->Render(hDC);
+	m_pCurScene->render(hDC);
 }
 
-void CSceneManager::Init()
+void CSceneManager::init()
 {
-	m_arrScene[(int)GROUP_SCENE::START] = new CScene_Start;
-	m_arrScene[(int)GROUP_SCENE::START]->SetName(L"Start_Scene");
+	m_arrScene[(size_t)GROUP_SCENE::START] = new CScene_Start;
+	m_arrScene[(size_t)GROUP_SCENE::START]->SetName(L"Start_Scene");
 
-	m_arrScene[(int)GROUP_SCENE::STAGE_01] = new CScene_Stage_01;
-	m_arrScene[(int)GROUP_SCENE::STAGE_01]->SetName(L"Stage1_Scene");
+	m_arrScene[(size_t)GROUP_SCENE::TOOL] = new CScene_Tool;
+	m_arrScene[(size_t)GROUP_SCENE::TOOL]->SetName(L"Tool_Scene");
 
-	m_pCurrScene = m_arrScene[(int)GROUP_SCENE::START];
-	m_pCurrScene->Enter();
+	m_pCurScene = m_arrScene[(size_t)GROUP_SCENE::START];
+	m_pCurScene->Enter();
 }
 
+CScene* CSceneManager::GetCurScene()
+{
+	return m_pCurScene;
+}
