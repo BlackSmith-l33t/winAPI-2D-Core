@@ -11,6 +11,9 @@ private:
 	vector<CGameObject*> m_arrObj[(int)GROUP_GAMEOBJ::SIZE];
 	wstring m_strName;
 
+	UINT m_iTileX;
+	UINT m_iTileY;
+
 public:
 	CScene();
 	virtual ~CScene();
@@ -19,15 +22,22 @@ public:
 	virtual void finalupdate();
 	virtual void render(HDC hDC);
 
+	void render_tile(HDC hDC);
+
 	virtual void Enter() = 0;	// 해당 씬에 진입시 호출
 	virtual void Exit() = 0;	// 해당 씬을 탈출시 호출
 
 	void SetName(const wstring& strName);
 	wstring GetName();
+	UINT GetTileX();
+	UINT GetTileY();
 
 	const vector<CGameObject*>& GetGroupObject(GROUP_GAMEOBJ group);
 	void AddObject(CGameObject* pObj, GROUP_GAMEOBJ group);
 	void DeleteGroup(GROUP_GAMEOBJ group);
 	void DeleteAll();
+
+	void CreateTile(UINT xSize, UINT ySize);
+	void LoadTile(const wstring& strPath);
 };
 

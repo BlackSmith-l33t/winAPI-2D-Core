@@ -22,6 +22,7 @@
 // STL
 #include <vector>
 #include <map>
+#include <list>
 
 using namespace std;
 
@@ -38,11 +39,13 @@ using namespace std;
 enum class GROUP_GAMEOBJ
 {
 	DEFAULT,
+	TILE,
 	PLAYER,
 	MONSTER,
 	MISSILE_PLAYER,
 	MISSILE_MONSTER,
 
+	UI,
 	SIZE,
 };
 
@@ -99,13 +102,14 @@ enum class TYPE_EVENT
 #include "CEventManager.h"
 #include "CResourceManager.h"
 #include "CCameraManager.h"
+#include "CUIManager.h"
 
 //========================================
 //##			디파인문				##
 //========================================
 
-#define WINSTARTX   100
-#define WINSTARTY   100
+#define WINSTARTX   330
+#define WINSTARTY   150
 #define WINSIZEX	1280
 #define	WINSIZEY	720
 #define WINSTYLE	WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX
