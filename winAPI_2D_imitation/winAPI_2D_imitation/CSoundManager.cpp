@@ -46,9 +46,6 @@ void CSoundManager::AddSound(wstring keyName, wstring filePath, bool bgm)
 	pSound->SetLoop(bgm);
 	//m_pSystem->createStream
 	m_mapSound.insert(make_pair(keyName, pSound));
-
-
-
 }
 
 void CSoundManager::Play(wstring keyName)

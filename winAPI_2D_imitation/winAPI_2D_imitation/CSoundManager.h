@@ -18,7 +18,7 @@ public:
 
 	System* GetSystem();
 
-	void AddSound(wstring keName, wstring filePath, bool bgm);
+	void AddSound(wstring keyName, wstring filePath, bool bgm);
 
 	void Play(wstring keyName);
 	void Stop(wstring keyName);
