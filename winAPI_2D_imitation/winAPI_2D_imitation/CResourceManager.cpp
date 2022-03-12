@@ -22,7 +22,7 @@ CResourceManager::~CResourceManager()
 
 	for (map<wstring, CSound*>::iterator iter = m_mapSound.begin(); iter != m_mapSound.end(); iter++)
 	{
-		// TODO : 삭제 진행
+		// TODO : 사운드 삭제 진행
 	}
 }
 
@@ -60,6 +60,22 @@ CTexture* CResourceManager::LoadTextrue(const wstring& strKey, const wstring& st
 
 	m_mapTex.insert(make_pair(strKey, pTex));
 	
+	return pTex;
+}
+
+CTexture* CResourceManager::CreateTexture(const wstring& strKey, UINT width, UINT height)
+{
+	CTexture* pTex = FindTexture(strKey);
+	if (nullptr != pTex)
+	{
+		return nullptr;
+	}
+
+	pTex = new CTexture();
+	pTex->Create(width, height);
+	pTex->SetKey(strKey);
+
+	m_mapTex.insert(make_pair(strKey, pTex));
 	return pTex;
 }
 

@@ -10,12 +10,7 @@ CSound::CSound()
 
 CSound::~CSound()
 {
-	Stop();
- 
-	if (nullptr != m_pSound)
-	{
-		m_pSound->release();
-	}
+	m_pSound->release();
 }
 
 void CSound::Play()

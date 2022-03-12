@@ -90,7 +90,7 @@ void CScene::render_tile(HDC hDC)
     {
         for (int iCurCol = iLTCol; iCurCol <= (iLTCol + iClientWidth); ++iCurCol)
         {
-            if (iCurCol < 0 || (int)m_iTileX <= iCurCol || iCurRow < 0 || (int)m_iTileY <= iCurRow)
+            if (iCurCol < 0 || m_iTileX <= (UINT)iCurCol || iCurRow < 0 || m_iTileY <= (UINT)iCurRow)
             {
                 continue;
             }
@@ -104,6 +104,11 @@ void CScene::render_tile(HDC hDC)
 const vector<CGameObject*>& CScene::GetGroupObject(GROUP_GAMEOBJ group)
 {
     return m_arrObj[(UINT)group];
+}
+
+vector<CGameObject*>& CScene::GetUIGroup()
+{
+    return m_arrObj[(UINT)GROUP_GAMEOBJ::UI];
 }
 
 void CScene::SetName(const wstring& strName)
