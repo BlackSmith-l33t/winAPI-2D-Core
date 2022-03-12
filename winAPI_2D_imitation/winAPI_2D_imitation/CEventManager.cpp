@@ -26,24 +26,27 @@ void CEventManager::Execute(const tEvent& event)
 
 		CSceneManager::getInst()->GetCurScene()->AddObject(pObj, group);
 	}
-		break;
+	break;
 	case TYPE_EVENT::DELETE_OBJECT:
 	{
 		// lParam : Object 주소
 		// Object를 삭제 예정 상태로 만듬
 		// 삭제예정 오브젝트들을 모아둔다
 		CGameObject* pObj = (CGameObject*)event.lParam;
+		if (pObj->isDead())
+			return;
 		pObj->SetDead();
 		m_vecDead.push_back(pObj);
 	}
-		break;
+	break;
 	case TYPE_EVENT::CHANGE_SCENE:
 	{
 		// lParam : scene 그룹
 		GROUP_SCENE scene = (GROUP_SCENE)event.lParam;
+		CUIManager::getInst()->SetFocusedUI(nullptr);
 		CSceneManager::getInst()->ChangeScene(scene);
 	}
-		break;
+	break;
 	}
 }
 

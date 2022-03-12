@@ -1,6 +1,15 @@
 #pragma once
 
 class CGameObject;
+class CTexture;
+
+enum class CAM_EFFECT
+{
+	FADE_IN,
+	FADE_OUT,
+
+	NONE
+};
 
 class CCameraManager
 {
@@ -18,10 +27,15 @@ private:
 	float m_fAccTime;			// 타겟을 따라간 소요시간
 	float m_fSpeed;				// 타겟을 따라가는 속도
 
-	void CalDiff();
+	CAM_EFFECT m_eEffect;
+	CTexture* m_pTex;
+	float m_fEffectDuration;
+	float m_fCurTime;
 
 public:
+	void init();
 	void update();
+	void render(HDC hDC);
 
 	void SetLookAt(fPoint lookAt);
 	void SetTargetObj(CGameObject* target);
@@ -30,6 +44,12 @@ public:
 	fPoint GetRenderPos(fPoint objPos);
 	fPoint GetRealPos(fPoint renderPos);
 
+	void FadeIn(float duration);
+	void FadeOut(float duration);
+
 	void Scroll(fVec2 vec, float velocity);
+
+private:
+	void CalDiff();
 };
 
