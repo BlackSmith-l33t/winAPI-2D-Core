@@ -1,2 +1,1 @@
-# winAPI-2D-imitation
-winAPI 2D imitation 박성하
+# winAPI-2D-Core Engine
